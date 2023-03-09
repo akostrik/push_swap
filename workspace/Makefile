@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/03/06 16:03:30 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/09 13:43:24 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ all: ${NAME}
 	clear
 	$(MAKE) -C $(dir ${LIBFT_A})
 	${CC} ${SRCS} -o ${NAME} $(LIBFT_A)
-	
+
 #	@echo -n *** 0 ' '
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes  ./${NAME} ${ARGS0} | wc -l
 #	@./${NAME} ${ARGS0} | ./checker_linux ${ARGS0}

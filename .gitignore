@@ -8,5 +8,7 @@ workspace/tester_tripouille
 workspace/push_swap_tester
 workspace/push_swap_tester/*
 workspace/libft/*.o
+workspace/libft/libft.a
+workspace/checker_linux
 
 

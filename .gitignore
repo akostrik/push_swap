@@ -1,0 +1,12 @@
+workspace/*.o
+workspace\ backup/*.o
+workspace/push_swap.a
+submit
+submit/*
+workspace/tester_tripouille/*
+workspace/tester_tripouille
+workspace/push_swap_tester
+workspace/push_swap_tester/*
+workspace/libft/*.o
+
+

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/10 17:02:36 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:27:35 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,6 @@ void put_places(t_stk **a, int *sorted_ints, int len)
 		}
 		i++;
 	}
-	print_ints(a);
 }
 
 int	sort2(t_two_stacks *ab)
@@ -285,14 +284,18 @@ int	sort2(t_two_stacks *ab)
 		cur = cur->nxt;
 	}
 	sorted_ints = merge_sort(up, down, 0, ab->len - 1);
+	put_places(ab->a, sorted_ints, ab->len);
+	
 	i = 0;
 	while (i < ab->len)
 	{
-		printf("%d ",sorted_ints[i]);
+		if ((*(ab->a))->place >= ab->len / 2)
+			push(ab->a, ab->b, 'b');
+		rotate(ab->a, 'a');
 		i++;
 	}
-	printf("\n");
-	put_places(ab->a, sorted_ints, ab->len);
+	print_ints(ab->a);
+	print_ints(ab->b);
 	return (0);
 }
 

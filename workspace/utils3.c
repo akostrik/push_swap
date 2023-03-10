@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/06 16:06:06 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:59:46 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	free_stack(t_stk ***a)
 	free(*a);
 }
 
-/*
+
 void	print_ints(t_stk	**a) ///////////////////////////////
 {
 	t_stk	*cur;
 	int	i;
 
-	if (*a == NULL)
+	if (a == NULL || *a == NULL)
 	{
 		printf(" empty\n");
 		return ;
@@ -58,6 +58,18 @@ void	print_ints(t_stk	**a) ///////////////////////////////
 	while (cur != *a)
 	{
 		printf("%2d ", cur->n);
+		cur = cur->nxt;
+		i++;
+	}
+	printf("\n");
+
+	cur = *a;
+	printf("%2d ", cur->place);
+	cur = cur->nxt;
+	i = 1;
+	while (cur != *a)
+	{
+		printf("%2d ", cur->place);
 		cur = cur->nxt;
 		i++;
 	}
@@ -89,4 +101,3 @@ void	print_all_info(t_stk	**a)
 	}
 	printf("\n");
 }
-*/

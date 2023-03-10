@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/09 13:56:54 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:02:36 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ static void	merge_main_loop(t_two_stacks *ab, int len_base)
 	}
 }
 
-int	sort(t_two_stacks *ab)
+int	sort_1st_version(t_two_stacks *ab)
 {
-	int		len_base;
-	int		nb_elts_r;
-	int		nb_elts_l;
+	int	len_base;
+	int	nb_elts_r;
+	int	nb_elts_l;
 
 	if (ab->len <= 5)
 		return (sort_5_and_shorter(ab));
@@ -96,6 +96,203 @@ int	sort(t_two_stacks *ab)
 		push_all_from_b_to_a(ab);
 	if (ab->a_or_b == 'a' && ab->inc_or_dec == 'i')
 		inverse_a(ab);
+	return (0);
+}
+/*
+int	deep_copy(t_stk **a, t_stk **copy)
+{
+	int		i;
+	int		len;
+	t_stk	*cur;
+
+	i = 0;
+	len = len_(a);
+	cur = (*a)->prv;
+	while (i < len)
+	{
+		if (put_int(cur->n, copy) == -1)
+			return (-1);
+		cur = cur->prv;
+		i++;
+	}
+	printf("deep_copy:\n");
+	print_ints(copy);
+	return (0);
+}
+
+void delete (int n, t_stk **a)
+{
+	t_stk	*cur;
+
+	if (a == NULL || *a == NULL)
+		return ;
+	cur = *a;
+	while (cur->n != n)
+		cur = cur->nxt;
+	if (len_(a) == 1)
+	{
+		free(*a);
+		return ;
+	}
+	cur->prv->nxt = cur->nxt;
+	cur->nxt->prv = cur->prv;
+	free(cur);
+}
+
+int	median_(t_stk **a)
+{
+	t_stk	**copy;
+	//int	min;
+	//int	max;
+	//t_stk	*cur;
+	//int		i;
+	//int		len;
+
+	copy = NULL;
+	copy = (t_stk **)malloc(sizeof(t_stk *));
+	if (copy == NULL)
+		return (-1);
+	*copy = NULL;
+	deep_copy(a, copy);
+	printf("f median:\n");
+	print_ints(copy);
+//	while (len_(copy) > 2)
+	{
+		i = 0;
+		printf("i=0\n");
+		len = len_(copy);
+		printf("len = %d\n",len);
+		min = (*copy)->n;
+		max = (*copy)->n;
+		cur = *copy;
+		printf("*** \n");
+		while (i < len)
+		{
+			if (min > cur->n)
+				min = cur->n;
+			if (max < cur->n)
+				max = cur->n;
+			i++;
+			cur = cur->nxt;
+		}
+		printf("max = %d, min = %d\n", max,min);
+		delete (min, copy);
+		delete (max, copy);
+	}
+	free_stack(&copy);
+	return ((*copy)->n);
+	return (5);
+}*/
+
+int	*merge_sort(int *up, int *down, unsigned int left, unsigned int right)
+{
+	if (left == right)
+	{
+		down[left] = up[left];
+		return down;
+	}
+
+	unsigned int middle = left + (right - left) / 2;
+
+	// разделяй и сортируй
+	int *l_buff = merge_sort(up, down, left, middle);
+	int *r_buff = merge_sort(up, down, middle + 1, right);
+
+	// слияние двух отсортированных половин
+	int *target = l_buff == up ? down : up;
+
+	unsigned int l_cur = left, r_cur = middle + 1;
+	for (unsigned int i = left; i <= right; i++)
+	{
+		if (l_cur <= middle && r_cur <= right)
+		{
+			if (l_buff[l_cur] < r_buff[r_cur])
+			{
+				target[i] = l_buff[l_cur];
+				l_cur++;
+			}
+			else
+			{
+				target[i] = r_buff[r_cur];
+				r_cur++;
+			}
+		}
+		else if (l_cur <= middle)
+		{
+			target[i] = l_buff[l_cur];
+			l_cur++;
+		}
+		else
+		{
+			target[i] = r_buff[r_cur];
+			r_cur++;
+		}
+	}
+	return target;
+}
+
+void put_places(t_stk **a, int *sorted_ints, int len)
+{
+	int		i;
+	int		j;
+	t_stk	*cur;
+
+	i = 0;
+	while (i < len)
+	{
+		j = 0;
+		cur = *a;
+		while (j < len)
+		{
+			if (sorted_ints[i] == cur->n)
+			{
+				cur->place = i; 
+				break ;
+			}
+			cur = cur->nxt;
+			j++;
+		}
+		i++;
+	}
+	print_ints(a);
+}
+
+int	sort2(t_two_stacks *ab)
+{
+	// int	len_base;
+	// int	nb_elts_r;
+	// int	nb_elts_l;
+	int	*up;
+	int	*down;
+	int	*sorted_ints;
+	int i;
+	t_stk	*cur;
+
+	if (ab->len <= 5)
+		return (sort_5_and_shorter(ab));
+	up = (int *)malloc((ab->len)*sizeof(int));
+	if (up == NULL)
+		return (-1);
+	down = (int *)malloc((ab->len)*sizeof(int));
+	if (down == NULL)
+		return (-1);
+	i = 0;
+	cur = *(ab->a);
+	while (i < ab->len)
+	{
+		up[i] = cur->n;
+		i++;
+		cur = cur->nxt;
+	}
+	sorted_ints = merge_sort(up, down, 0, ab->len - 1);
+	i = 0;
+	while (i < ab->len)
+	{
+		printf("%d ",sorted_ints[i]);
+		i++;
+	}
+	printf("\n");
+	put_places(ab->a, sorted_ints, ab->len);
 	return (0);
 }
 

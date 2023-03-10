@@ -1,0 +1,15 @@
+Petite astuce :
+export ARG="1 2 3" = pour sauvegarder votre variable bash dans les var d'environnement. Comme ca vous pouvez tester les memes args sur plusieurs commandes
+
+ne doit pas relink
+убрать checher
+
+leaks
+""
+"-3"
+"03" "0"
+--3
+"21474833649"
+"2 5 6+3"
+2 5 6 + 3
+2\ a\

@@ -6,17 +6,15 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/03/09 13:43:24 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/10 16:16:17 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# ne doit pas relink
 #	valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS}
-# убрать checher
 # ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
 
 NAME      = push_swap
-SRCS      = main.c understand_arguments.c algo.c sort_5_and_shorter.c operations.c\
+SRCS      = main.c put_args.c sort.c sort_5_and_shorter.c operations.c\
             utils1.c utils2.c utils3.c
 OBJS      = ${SRCS:.c=.o}
 HDRS      = .
@@ -51,8 +49,7 @@ ARGS500   = -2147483648 2147483647 19 61 62 63 64 81 82 235 236 237 238 239 240 
 
 all: ${NAME}
 	clear
-	$(MAKE) -C $(dir ${LIBFT_A})
-	${CC} ${SRCS} -o ${NAME} $(LIBFT_A)
+	./${NAME} ${ARGS6}
 
 #	@echo -n *** 0 ' '
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes  ./${NAME} ${ARGS0} | wc -l
@@ -122,7 +119,9 @@ all: ${NAME}
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS500} | wc -l
 #	@./${NAME} ${ARGS500} | ./checker_linux ${ARGS500}
 
-${NAME}: ${OBJS}
+${NAME}: ${OBJS} push_swap.h
+	$(MAKE) -C $(dir ${LIBFT_A})
+	${CC} ${SRCS} -o ${NAME} $(LIBFT_A)
 
 %.o: %.c
 	${CC} ${CFLAGS} -c -o $@ $<

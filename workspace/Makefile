@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/03/10 17:08:37 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/20 16:34:48 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,79 +49,85 @@ ARGS500   = -2147483648 2147483647 19 61 62 63 64 81 82 235 236 237 238 239 240 
 
 all: ${NAME}
 	clear
-	./${NAME} ${ARGS6}
 
-#	@echo -n *** 0 ' '
-#	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes  ./${NAME} ${ARGS0} | wc -l
+#	@echo -n *** 0:' '
+#	@ ./${NAME} ${ARGS0} | wc -l
 #	@./${NAME} ${ARGS0} | ./checker_linux ${ARGS0}
-#	@echo -n *** 1 ' '
-#	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS1} | wc -l
-#	@./${NAME} ${ARGS1}
+#	@echo -n *** 1:' '
+#	@ ./${NAME} ${ARGS1} | wc -l
 #	@./${NAME} ${ARGS1} | ./checker_linux ${ARGS1}
-#	@echo -n *** 2 ' '
-#	@ valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS2} | wc -l
-#	@./${NAME} ${ARGS2} | ./checker_linux ${ARGS2}
-#	@echo -n 2 already in ordre ' '
-#	@ valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS2_} | wc -l
-#	@./${NAME} ${ARGS2_} | ./checker_linux ${ARGS2_}
-#	@echo -n *** 3 ' '
+#	@echo -n 2:' '
+#	@ ./${NAME} ${ARGS2} | wc -l
+#	@ ./${NAME} ${ARGS2} | ./checker_linux ${ARGS2}
+#	@echo -n 2 already in ordre:' '
+#	@ ./${NAME} ${ARGS2_} | wc -l
+#	@ ./${NAME} ${ARGS2_} | ./checker_linux ${ARGS2_}
+#	@echo -n 3:' '
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS3} | wc -l
+#	@ ./${NAME} ${ARGS3} | wc -l
 #	@./${NAME} ${ARGS3} | ./checker_linux ${ARGS3}
-#	@echo -n *** 4 ' '
+#	@echo -n 4 ' '
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS4} | wc -l
+#	@ ./${NAME} ${ARGS4} | wc -l
 #	@./${NAME} ${ARGS4} | ./checker_linux ${ARGS4}
-#	@echo -n *** 5 ' '
+#	@ echo -n 5 ' '
+#	@ ./${NAME} ${ARGS5}
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS5} | wc -l
-#	@./${NAME} ${ARGS5} | ./checker_linux ${ARGS5}
-#	@echo -n *** 7 ' '
+#	@ ./${NAME} ${ARGS5} | ./checker_linux ${ARGS5}
+	@ echo -n 6:' '
+#	@ ./${NAME} ${ARGS6}
+#	@ ./${NAME} ${ARGS6} | wc -l
+	@ ./${NAME} ${ARGS6} | ./checker_linux ${ARGS6}
+#	@echo -n 7 ' '
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS7} | wc -l
 #	@./${NAME} ${ARGS7} | ./checker_linux ${ARGS7}
-#	@echo -n *** 8 ' '
+#	@echo -n 8 ' '
 #	@./${NAME} ${ARGS8} | wc -l
 #	@./${NAME} ${ARGS8} | ./checker_linux ${ARGS8}
-#	@echo -n *** 9 ' '
-#	@./${NAME} ${ARGS8} | wc -l
-#	@./${NAME} ${ARGS8} | ./checker_linux ${ARGS8}
-#	@echo -n *** 15 ' '
+	@echo -n 9:' '
+#	@./${NAME} ${ARGS9} | wc -l
+	@./${NAME} ${ARGS9} | ./checker_linux ${ARGS9}
+#	@echo -n 15 ' '
 #	@./${NAME} ${ARGS15} | wc -l
 #	@./${NAME} ${ARGS15} | ./checker_linux ${ARGS15}
-#	@echo -n *** 16 ' '
+#	@echo -n 16 ' '
 #	@./${NAME} ${ARGS16} | wc -l
 #	@./${NAME} ${ARGS16} | ./checker_linux ${ARGS16}
-#	@echo -n *** 17 ' '
+#	@echo -n 17 ' '
 #	@./${NAME} ${ARGS17} | wc -l
 #	@./${NAME} ${ARGS17} | ./checker_linux ${ARGS17}
-#	@echo -n *** 17 already in ordre ' '
+#	@echo -n 17 already in ordre ' '
 #	@./${NAME} ${ARGS17_} | wc -l
 #	@./${NAME} ${ARGS17_} | ./checker_linux ${ARGS17_}
-#	@echo -n *** 18 ' '
+#	@echo -n 18 ' '
 #	@./${NAME} ${ARGS18} | wc -l
 #	@./${NAME} ${ARGS18} | ./checker_linux ${ARGS18}
-#	@echo -n *** 31 ' '
+#	@echo -n 31 ' '
 #	@./${NAME} ${ARGS31} | wc -l
 #	@./${NAME} ${ARGS31} | ./checker_linux ${ARGS31}
-#	@echo -n *** 32 ' '
+#	@echo -n 32 ' '
 #	@./${NAME} ${ARGS32} | wc -l
 #	@./${NAME} ${ARGS32} | ./checker_linux ${ARGS32}
-#	@echo -n *** 33 ' '
+#	@echo -n 33 ' '
 #	@./${NAME} ${ARGS33} | wc -l
 #	@./${NAME} ${ARGS33} | ./checker_linux ${ARGS33}
-#	@echo -n *** 48 ' '
+#	@echo -n 48 ' '
 #	@./${NAME} ${ARGS48} | wc -l
 #	@./${NAME} ${ARGS48} | ./checker_linux ${ARGS48}
-#	@echo -n *** 64 ' '
+#	@echo -n 64 ' '
 #	@./${NAME} ${ARGS64} | wc -l
 #	@./${NAME} ${ARGS64} | ./checker_linux ${ARGS64}
-#	@echo -n *** 100 ' '
-#	@./${NAME} ${ARGS100} | wc -l
-#	@./${NAME} ${ARGS100} | ./checker_linux ${ARGS100}
-#	@echo -n *** 500 ' '
+#	@ echo -n 100:' '
+#	@ ./${NAME} ${ARGS100} | wc -l
+#	@ ./${NAME} ${ARGS100} | ./checker_linux ${ARGS100}
+#	@ echo -n 500:' '
+#	@ ./${NAME} ${ARGS500} | wc -l
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS500} | wc -l
-#	@./${NAME} ${ARGS500} | ./checker_linux ${ARGS500}
+#	@ ./${NAME} ${ARGS500} | ./checker_linux ${ARGS500}
 
 ${NAME}: ${OBJS} push_swap.h
-	$(MAKE) -C $(dir ${LIBFT_A})
-	${CC} ${SRCS} -o ${NAME} $(LIBFT_A)
+	@ $(MAKE) -C $(dir ${LIBFT_A})
+	@ ${CC} ${SRCS} -o ${NAME} $(LIBFT_A)
 
 %.o: %.c
 	${CC} ${CFLAGS} -c -o $@ $<

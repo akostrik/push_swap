@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/10 17:45:34 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:19:38 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_two_stacks
 	int		len;
 }	t_two_stacks;
 
-int		sort_1st_version(t_two_stacks *ab);
+int		sort1(t_two_stacks *ab);
 int		sort2(t_two_stacks *ab);
 int		sort_5_and_shorter(t_two_stacks *ab);
 void	swap(t_stk	**a, char a_or_b);

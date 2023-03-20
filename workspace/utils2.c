@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/03 19:26:20 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:19:58 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,11 @@ int	is_sorted(t_stk **a)
 
 void	change_ab(t_two_stacks *ab)
 {
+	t_stk	*tmp;
+
+	tmp = *(ab->a);
 	*(ab->a) = *(ab->b);
-	*(ab->b) = NULL;
+	*(ab->b) = tmp;
 	if (ab->a_or_b == 'a')
 		ab->a_or_b = 'b';
 	else if (ab->a_or_b == 'b')

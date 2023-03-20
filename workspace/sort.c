@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/10 17:49:42 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:17:44 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,23 @@ static void	merge_main_loop(t_two_stacks *ab, int len_base)
 		nb_elts_to_treat -= 2 * len_base;
 	}
 }
+static int	to_change_id(int len)
+{
+	int	i;
 
-int	sort_1st_version(t_two_stacks *ab)
+	i = 1;
+	while (1)
+	{
+		if (len <= i)
+			return (1);
+		i *= 2;
+		if (len <= i)
+			return (0);
+		i *= 2;
+	}
+}
+
+int	sort1(t_two_stacks *ab)
 {
 	int	len_base;
 	int	nb_elts_r;
@@ -78,6 +93,18 @@ int	sort_1st_version(t_two_stacks *ab)
 
 	if (ab->len <= 5)
 		return (sort_5_and_shorter(ab));
+	if (to_change_id(ab->len))
+	{
+		// printf("\n");
+		// print_ints(ab->a);
+		// print_ints(ab->b);
+		printf("CHANGE\n");
+		//change_ab(ab);
+		change_id(&(ab->inc_or_dec));
+		//ab->a_or_b = 'b';
+		// print_ints(ab->a);
+		// print_ints(ab->b);
+	}
 	len_base = 1;
 	nb_elts_r = 0;
 	while (len_base <= ab->len)
@@ -92,12 +119,13 @@ int	sort_1st_version(t_two_stacks *ab)
 		change_ab(ab);
 		len_base *= 2;
 	}
-	if (ab->a_or_b == 'b')
+	if (ab->a_or_b == 'b') // 6
 		push_all_from_b_to_a(ab);
-	if (ab->a_or_b == 'a' && ab->inc_or_dec == 'i')
-		inverse_a(ab);
+	//if (ab->a_or_b == 'a' && ab->inc_or_dec == 'i') // 9
+		//inverse_a(ab);
 	return (0);
 }
+
 /*
 int	deep_copy(t_stk **a, t_stk **copy)
 {
@@ -183,7 +211,7 @@ int	median_(t_stk **a)
 	return ((*copy)->n);
 	return (5);
 }*/
-
+/*
 int	*merge_sort(int *up, int *down, unsigned int left, unsigned int right)
 {
 	if (left == right)
@@ -323,7 +351,7 @@ int	sort2(t_two_stacks *ab)
 	print_ints(ab->b);
 	return (0);
 }
-
+*/
 /*void	bubble_sort(t_stk **a) // O(n*n)
 {
 	int	len;

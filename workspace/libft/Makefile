@@ -27,7 +27,7 @@ CFLAGS  = -Wall -Wextra -Werror
 
 all: ${NAME}
 
-${NAME}: ${OBJS} 
+${NAME}: ${OBJS} libft.h
 	ar rc ${NAME} ${OBJS}
 
 %.o: %.c 

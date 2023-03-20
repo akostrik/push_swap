@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/10 17:27:35 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:49:42 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,27 @@ void put_places(t_stk **a, int *sorted_ints, int len)
 	}
 }
 
+void	sort_two_stacks(t_two_stacks *ab)
+{
+	int	a_is_sorted;
+	int	b_is_sorted;
+	
+	a_is_sorted = 0;
+	b_is_sorted = 0;
+	while (!a_is_sorted || !b_is_sorted)
+	{
+		if ((*(ab->a))->n < ((*(ab->a))->nxt)->n && (*(ab->b))->n > ((*(ab->b))->nxt)->n)
+			swap_two(ab);
+		else if ((*(ab->a))->n < ((*(ab->a))->nxt)->n)
+			swap(ab->a, 'a');
+		else if ((*(ab->b))->n > ((*(ab->b))->nxt)->n)
+			swap(ab->b, 'b');
+		a_is_sorted = is_sorted(ab->a);
+		a_is_sorted = is_sorted(ab->b);
+		
+	}
+}
+
 int	sort2(t_two_stacks *ab)
 {
 	// int	len_base;
@@ -294,6 +315,10 @@ int	sort2(t_two_stacks *ab)
 		rotate(ab->a, 'a');
 		i++;
 	}
+	print_ints(ab->a);
+	print_ints(ab->b);
+	printf("***\n");
+	sort_two_stacks(ab);
 	print_ints(ab->a);
 	print_ints(ab->b);
 	return (0);

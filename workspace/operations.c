@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:46:18 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/03 19:34:49 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:47:23 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 static void	print_operation(char *op, char a_or_b)
 {
 	if (a_or_b != ' ')
-		ft_printf("%s%c\n", op, a_or_b);
+	{
+		ft_printf("%s", op);
+		if (a_or_b == 'a' || a_or_b == 'b') 
+			ft_printf("%c\n", a_or_b);
+	}
 }
 
 void	swap(t_stk	**a, char a_or_b)
@@ -47,6 +51,13 @@ void	swap(t_stk	**a, char a_or_b)
 	print_operation("s", a_or_b);
 }
 
+void swap_two(t_two_stacks *ab)
+{
+	swap(ab->a, ' ');
+	swap(ab->b, ' ');
+	print_operation("rr", 0);
+}
+
 void	push(t_stk **from, t_stk **to, char a_or_b)
 {
 	t_stk	*moved;
@@ -74,6 +85,13 @@ void	rotate(t_stk **a, char a_or_b)
 		return ;
 	*a = (*a)->nxt;
 	print_operation("r", a_or_b);
+}
+
+void	rotate_two(t_two_stacks *ab)
+{
+	rotate(ab->a, ' ');
+	rotate(ab->b, ' ');
+	print_operation("rr", 0);
 }
 
 void	reverse_rotate(t_stk **a, char a_or_b)

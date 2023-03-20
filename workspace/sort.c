@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/20 17:17:44 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:20:10 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ int	sort1(t_two_stacks *ab)
 		// printf("\n");
 		// print_ints(ab->a);
 		// print_ints(ab->b);
-		printf("CHANGE\n");
+		//printf("CHANGE\n");
 		//change_ab(ab);
-		change_id(&(ab->inc_or_dec));
+		//change_id(&(ab->inc_or_dec)); ///////////////////
 		//ab->a_or_b = 'b';
 		// print_ints(ab->a);
 		// print_ints(ab->b);
@@ -121,8 +121,8 @@ int	sort1(t_two_stacks *ab)
 	}
 	if (ab->a_or_b == 'b') // 6
 		push_all_from_b_to_a(ab);
-	//if (ab->a_or_b == 'a' && ab->inc_or_dec == 'i') // 9
-		//inverse_a(ab);
+	if (ab->a_or_b == 'a' && ab->inc_or_dec == 'i') // 9////////////////////////
+		inverse_a(ab);
 	return (0);
 }
 

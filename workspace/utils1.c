@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/02/25 13:00:47 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:06:11 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,26 @@
 int	put_int(int n, t_stk **a)
 {
 	t_stk	*new;
+	int		i;
+	int		p;
 
 	new = (t_stk *)malloc(sizeof(t_stk));
 	if (new == NULL)
 		return (-1);
 	new->n = n;
-	new->nxt = NULL;
+	new->un = (unsigned int)((long)n + (long)INT_MIN);
+	new->nxt = NULL;	
 	new->prv = NULL;
+	new->str2 = (char*)malloc(33); // free
+	new->str2[32] = '\0';	
+	i = 31;
+	p = 0;
+	while (i >= 0)
+	{
+		new->str2[i] = '0' + ((int)((new->un >> p) & 00000000000000000000000000000001));
+		i--;
+		p++;
+	}
 	put_elt(new, a);
 	return (1);
 }

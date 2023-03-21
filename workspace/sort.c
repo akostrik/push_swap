@@ -6,11 +6,9 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/20 17:20:10 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:09:03 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// i_or_d = increasing or decreasing
 
 #include "push_swap.h"
 
@@ -76,16 +74,16 @@ static int	to_change_id(int len)
 	i = 1;
 	while (1)
 	{
-		if (len <= i)
+		if (len < i)
 			return (1);
 		i *= 2;
-		if (len <= i)
+		if (len < i)
 			return (0);
 		i *= 2;
 	}
 }
 
-int	sort1(t_two_stacks *ab)
+int	sort1(t_two_stacks *ab) // 100 : 1133 = 2 points, 500 : 7181 = 3 points
 {
 	int	len_base;
 	int	nb_elts_r;
@@ -94,20 +92,11 @@ int	sort1(t_two_stacks *ab)
 	if (ab->len <= 5)
 		return (sort_5_and_shorter(ab));
 	if (to_change_id(ab->len))
-	{
-		// printf("\n");
-		// print_ints(ab->a);
-		// print_ints(ab->b);
-		//printf("CHANGE\n");
-		//change_ab(ab);
-		//change_id(&(ab->inc_or_dec)); ///////////////////
-		//ab->a_or_b = 'b';
-		// print_ints(ab->a);
-		// print_ints(ab->b);
-	}
+		;
 	len_base = 1;
 	nb_elts_r = 0;
-	while (len_base <= ab->len)
+	//print_ints(ab->a);
+	while (len_base < ab->len) 
 	{
 		if (is_sorted(ab->a) && ab->a_or_b == 'a' && len_(ab->a) == ab->len)
 			return (0);
@@ -117,13 +106,51 @@ int	sort1(t_two_stacks *ab)
 		nb_elts_r = nb_elts_l;
 		merge_main_loop(ab, len_base);
 		change_ab(ab);
+		//printf("len_base = %d, sur %c : ",len_base,ab->a_or_b);
+		//print_ints(ab->a);
 		len_base *= 2;
 	}
-	if (ab->a_or_b == 'b') // 6
+	if (ab->a_or_b == 'b') 
+	{
+		//printf("push_all_from_b_to_a\n");
 		push_all_from_b_to_a(ab);
-	if (ab->a_or_b == 'a' && ab->inc_or_dec == 'i') // 9////////////////////////
+	}
+	if (ab->a_or_b == 'a' && ab->inc_or_dec == 'i') // 8 .. 15, 32 .. 63, 128 .. 255, 512 ..
 		inverse_a(ab);
 	return (0);
+}
+
+static int has_1_at_place_p(unsigned int un, int p)
+{
+	return ((int)((un >> p) & 00000000000000000000000000000001));
+}
+
+static void	move_those_who_has_1_at_place_p(t_two_stacks *ab, int p)
+{
+	t_stk	*cur;
+
+	cur = *(ab->a);
+	if (cur == cur->nxt)
+		if (has_1_at_place_p(cur->un, p))
+			push(ab->a, ab->b, 'a');
+	cur = cur->nxt;
+	while (cur != *(ab->a))
+	{
+		if (has_1_at_place_p(cur->un, p))
+			push(ab->a, ab->b, 'a');
+		cur = cur->nxt;
+	}
+}
+
+int	radix_sort(t_two_stacks *ab)
+{
+		print_ints(ab->a);
+		print_ints(ab->b);
+		printf("move\n");
+		move_those_who_has_1_at_place_p(ab, 1);
+		print_ints(ab->a);
+		print_ints(ab->b);
+		return (0);
 }
 
 /*

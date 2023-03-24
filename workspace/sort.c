@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/24 20:30:35 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:56:45 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ static int	nb_elts_before_main_loop(int total_len, int len_base)
 	return (0);
 }
 
-static void	merge(t_two_stacks *ab, int lenl, int lenr, int print_operations)
+static int	merge(t_two_stacks *ab, int lenl, int lenr, int print_operations)
 {
 	int	l;
 	int	r;
+	int	nb_operations;
 
+	nb_operations = 0;
 	change_id(&(ab->inc_or_dec));
 	l = 0;
 	r = 0;
@@ -40,32 +42,42 @@ static void	merge(t_two_stacks *ab, int lenl, int lenr, int print_operations)
 		|| (ab->inc_or_dec == 'd' && (*(ab->a))->n < (*ab->a)->prv->n))
 		{
 			reverse_rotate(ab->a, ab->a_or_b, print_operations);
+			nb_operations++;
 			r++;
 		}
 		else
 			l++;
 		push(ab->a, ab->b, the_other(ab->a_or_b), print_operations);
+		nb_operations++;
 	}
 	while (l++ < lenl)
+	{
 		push(ab->a, ab->b, the_other(ab->a_or_b), print_operations);
+		nb_operations++;
+	}
 	while (r++ < lenr)
 	{
-		reverse_rotate(ab->a, ab->a_or_b,print_operations);
+		reverse_rotate(ab->a, ab->a_or_b, print_operations);
 		push(ab->a, ab->b, the_other(ab->a_or_b), print_operations);
+		nb_operations += 2;
 	}
+	return (nb_operations);
 }
 
-static void	merge_main_loop(t_two_stacks *ab, int len_base, int print_operations)
+static int	merge_main_loop(t_two_stacks *ab, int len_base, int print_operations)
 {
 	int		nb_elts_to_treat;
+	int	nb_operations;
 
+	nb_operations = 0;
 	ab->inc_or_dec = 'i';
 	nb_elts_to_treat = ab->len - nb_elts_before_main_loop(ab->len, len_base);
 	while (nb_elts_to_treat > 0)
 	{
-		merge(ab, len_base, len_base, print_operations);
+		nb_operations += merge(ab, len_base, len_base, print_operations);
 		nb_elts_to_treat -= 2 * len_base;
 	}
+	return (nb_operations);
 }
 
 // static int	to_change_id(int len)
@@ -104,21 +116,19 @@ int	sort_2_4_8(t_two_stacks *ab, int print_operations) // 100 : 1133 = 2 points,
 			return (nb_operations);
 		nb_elts_l = nb_elts_before_main_loop(ab->len, len_base);
 		if (nb_elts_l > 0)
-			merge(ab, nb_elts_l - nb_elts_r, nb_elts_r, print_operations);
+			nb_operations += merge(ab, nb_elts_l - nb_elts_r, nb_elts_r, print_operations);
 		nb_elts_r = nb_elts_l;
-		merge_main_loop(ab, len_base, print_operations);
+		nb_operations += merge_main_loop(ab, len_base, print_operations);
 		change_ab(ab);
 		//printf("len_base = %d, sur %c : ",len_base,ab->a_or_b);
 		//print_ints(ab->a);
 		len_base *= 2;
 	}
 	if (ab->a_or_b == 'b') 
-	{
-		//printf("push_all_from_b_to_a\n");
-		push_all_from_b_to_a(ab, print_operations);
-	}
+		nb_operations += push_all_from_b_to_a(ab, print_operations);
 	if (ab->a_or_b == 'a' && ab->inc_or_dec == 'i') // 8 .. 15, 32 .. 63, 128 .. 255, 512 ..
-		inverse_a(ab, print_operations);
+		nb_operations += inverse_a(ab, print_operations);
+	printf("nb_operations = %d\n", nb_operations);
 	return (nb_operations);
 }
 

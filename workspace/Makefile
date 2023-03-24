@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/03/24 19:43:20 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/24 20:57:37 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -137,7 +137,7 @@ all: ${NAME}
 #	@ echo -n 101' ' ; ./${NAME} ${ARGS101} | wc -l
 #	@ echo -n 101' ' ; ./${NAME} ${ARGS101} | ./checker_linux ${ARGS101}
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS500} | wc -l
-	@ echo -n 500' ' ; ./${NAME} ${ARGS500}
+	@ echo 500' ' ; ./${NAME} ${ARGS500} | wc -l
 #	@ echo -n 500' ' ; ./${NAME} ${ARGS500} | ./checker_linux ${ARGS500} 
 #	@ echo -n 501' ' ; ./${NAME} ${ARGS501} | wc -l ;
 #	@ echo -n 501' ' ; ./${NAME} ${ARGS501} | ./checker_linux ${ARGS501} 

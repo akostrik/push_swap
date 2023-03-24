@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/24 20:15:00 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:44:46 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,23 +85,30 @@ int	len_(t_stk **a)
 	return (i);
 }
 
-void	push_all_from_b_to_a(t_two_stacks *ab, int print_operations) // for sort2
+int	push_all_from_b_to_a(t_two_stacks *ab, int print_operations) // for sort2
 {
 	int	i;
+	int	nb_operations;
 
 	i = 0;
+	nb_operations = 0;
 	while (i < ab->len)
 	{
 		if (ab->inc_or_dec == 'd')
+		{
 			reverse_rotate(ab->a, 'b', print_operations);
+			nb_operations++;
+		}
 		push(ab->a, ab->b, 'a', print_operations);
+		nb_operations++;
 		i++;
 	}
 	*(ab->a) = *(ab->b);
 	*(ab->b) = NULL;
+	return (nb_operations);
 }
 
-void	push_all_from_b_to_a2(t_two_stacks *ab, int print_operations) // for radix
+int	push_all_from_b_to_a2(t_two_stacks *ab, int print_operations) // for radix
 {
 	int	i;
 	int	len_b;
@@ -113,10 +120,11 @@ void	push_all_from_b_to_a2(t_two_stacks *ab, int print_operations) // for radix
 		push(ab->b, ab->a, 'a', print_operations);
 		i++;
 	}
+	return (i);
 }
 
 
-void	inverse_a(t_two_stacks *ab, int print_operations)
+int	inverse_a(t_two_stacks *ab, int print_operations)
 {
 	int	i;
 
@@ -132,12 +140,10 @@ void	inverse_a(t_two_stacks *ab, int print_operations)
 	i = 0;
 	while (i < ab->len)
 	{
-		if (print_operations == 1)
-			push(ab->a, ab->b, 'a', print_operations);
-		else
-			push(ab->a, ab->b, ' ', print_operations);
+		push(ab->a, ab->b, 'a', print_operations);
 		i++;
 	}
 	*(ab->a) = *(ab->b);
 	*(ab->b) = NULL;
+	return (3 * ab->len);
 }

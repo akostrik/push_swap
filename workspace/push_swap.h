@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/24 16:53:42 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:30:17 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,23 @@ typedef struct s_two_stacks
 	int		len;
 }	t_two_stacks;
 
-int		sort1(t_two_stacks *ab);
+int		sort_5_and_shorter(t_two_stacks *ab, int print_operations);
+int		sort_2_4_8(t_two_stacks *ab, int print_operations);
 int		sort2(t_two_stacks *ab);
-int		radix_sort(t_two_stacks *ab);
-int		sort_5_and_shorter(t_two_stacks *ab);
-void	swap(t_stk	**a, char a_or_b);
-void	push(t_stk **from, t_stk **to, char a_or_b);
-void	rotate(t_stk **a, char a_or_b);
-void	reverse_rotate(t_stk **a, char a_or_b);
-void	swap_two(t_two_stacks *ab);
+int		radix_sort(t_two_stacks *ab, int print_operations);
+void	swap(t_stk	**a, char a_or_b, int print_operations);
+void	push(t_stk **from, t_stk **to, char a_or_b, int print_operations);
+void	rotate(t_stk **a, char a_or_b, int print_operations);
+void	reverse_rotate(t_stk **a, char a_or_b, int print_operations);
+void	swap_two(t_two_stacks *ab, int print_operations);
 int		put_args(t_stk	**a, int argc, char **argv);
 int		put_int(int n, t_stk **a);
 int		put_elt(t_stk	*new, t_stk **a);
 int		len_(t_stk **a);
 char	*convert_to_binary(unsigned int	un);
-void	push_all_from_b_to_a(t_two_stacks *ab);
-void	push_all_from_b_to_a2(t_two_stacks *ab);
-void	inverse_a(t_two_stacks *abs);
+void	push_all_from_b_to_a(t_two_stacks *ab, int print_operations);
+void	push_all_from_b_to_a2(t_two_stacks *ab, int print_operations);
+void	inverse_a(t_two_stacks *abs, int print_operations);
 void	change_ab(t_two_stacks *ab);
 char	change_id(char *c);
 char	the_other(char c);

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/24 18:19:50 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:15:00 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	len_(t_stk **a)
 	return (i);
 }
 
-void	push_all_from_b_to_a(t_two_stacks *ab) // for sort2
+void	push_all_from_b_to_a(t_two_stacks *ab, int print_operations) // for sort2
 {
 	int	i;
 
@@ -93,15 +93,15 @@ void	push_all_from_b_to_a(t_two_stacks *ab) // for sort2
 	while (i < ab->len)
 	{
 		if (ab->inc_or_dec == 'd')
-			reverse_rotate(ab->a, 'b');
-		push(ab->a, ab->b, 'a');
+			reverse_rotate(ab->a, 'b', print_operations);
+		push(ab->a, ab->b, 'a', print_operations);
 		i++;
 	}
 	*(ab->a) = *(ab->b);
 	*(ab->b) = NULL;
 }
 
-void	push_all_from_b_to_a2(t_two_stacks *ab) // for radix
+void	push_all_from_b_to_a2(t_two_stacks *ab, int print_operations) // for radix
 {
 	int	i;
 	int	len_b;
@@ -110,21 +110,21 @@ void	push_all_from_b_to_a2(t_two_stacks *ab) // for radix
 	i = 0;
 	while (i < len_b)
 	{
-		push(ab->b, ab->a, 'a');
+		push(ab->b, ab->a, 'a', print_operations);
 		i++;
 	}
 }
 
 
-void	inverse_a(t_two_stacks *ab)
+void	inverse_a(t_two_stacks *ab, int print_operations)
 {
 	int	i;
 
 	i = 0;
 	while (i < ab->len)
 	{
-		reverse_rotate(ab->a, 'a');
-		push(ab->a, ab->b, 'b');
+		reverse_rotate(ab->a, 'a', print_operations);
+		push(ab->a, ab->b, 'b', print_operations);
 		i++;
 	}
 	*(ab->a) = *(ab->b);
@@ -132,7 +132,10 @@ void	inverse_a(t_two_stacks *ab)
 	i = 0;
 	while (i < ab->len)
 	{
-		push(ab->a, ab->b, 'a');
+		if (print_operations == 1)
+			push(ab->a, ab->b, 'a', print_operations);
+		else
+			push(ab->a, ab->b, ' ', print_operations);
 		i++;
 	}
 	*(ab->a) = *(ab->b);

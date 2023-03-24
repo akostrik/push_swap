@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/24 18:21:32 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/24 20:30:35 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	nb_elts_before_main_loop(int total_len, int len_base)
 	return (0);
 }
 
-static void	merge(t_two_stacks *ab, int lenl, int lenr)
+static void	merge(t_two_stacks *ab, int lenl, int lenr, int print_operations)
 {
 	int	l;
 	int	r;
@@ -39,23 +39,23 @@ static void	merge(t_two_stacks *ab, int lenl, int lenr)
 		if ((ab->inc_or_dec == 'i' && (*(ab->a))->n > (*(ab->a))->prv->n) \
 		|| (ab->inc_or_dec == 'd' && (*(ab->a))->n < (*ab->a)->prv->n))
 		{
-			reverse_rotate(ab->a, ab->a_or_b);
+			reverse_rotate(ab->a, ab->a_or_b, print_operations);
 			r++;
 		}
 		else
 			l++;
-		push(ab->a, ab->b, the_other(ab->a_or_b));
+		push(ab->a, ab->b, the_other(ab->a_or_b), print_operations);
 	}
 	while (l++ < lenl)
-		push(ab->a, ab->b, the_other(ab->a_or_b));
+		push(ab->a, ab->b, the_other(ab->a_or_b), print_operations);
 	while (r++ < lenr)
 	{
-		reverse_rotate(ab->a, ab->a_or_b);
-		push(ab->a, ab->b, the_other(ab->a_or_b));
+		reverse_rotate(ab->a, ab->a_or_b,print_operations);
+		push(ab->a, ab->b, the_other(ab->a_or_b), print_operations);
 	}
 }
 
-static void	merge_main_loop(t_two_stacks *ab, int len_base)
+static void	merge_main_loop(t_two_stacks *ab, int len_base, int print_operations)
 {
 	int		nb_elts_to_treat;
 
@@ -63,48 +63,50 @@ static void	merge_main_loop(t_two_stacks *ab, int len_base)
 	nb_elts_to_treat = ab->len - nb_elts_before_main_loop(ab->len, len_base);
 	while (nb_elts_to_treat > 0)
 	{
-		merge(ab, len_base, len_base);
+		merge(ab, len_base, len_base, print_operations);
 		nb_elts_to_treat -= 2 * len_base;
 	}
 }
-static int	to_change_id(int len)
-{
-	int	i;
 
-	i = 1;
-	while (1)
-	{
-		if (len < i)
-			return (1);
-		i *= 2;
-		if (len < i)
-			return (0);
-		i *= 2;
-	}
-}
+// static int	to_change_id(int len)
+// {
+// 	int	i;
 
-int	sort1(t_two_stacks *ab) // 100 : 1133 = 2 points, 500 : 7181 = 3 points
+// 	i = 1;
+// 	while (1)
+// 	{
+// 		if (len < i)
+// 			return (1);
+// 		i *= 2;
+// 		if (len < i)
+// 			return (0);
+// 		i *= 2;
+// 	}
+// }
+
+int	sort_2_4_8(t_two_stacks *ab, int print_operations) // 100 : 1133 = 2 points, 500 : 7181 = 3 points
 {
 	int	len_base;
 	int	nb_elts_r;
 	int	nb_elts_l;
+	int	nb_operations;
 
 	if (ab->len <= 5)
-		return (sort_5_and_shorter(ab));
-	if (to_change_id(ab->len))
-		;
+		return (sort_5_and_shorter(ab, print_operations)); //////
+	// if (to_change_id(ab->len))
+	// 	;
 	len_base = 1;
 	nb_elts_r = 0;
-	//print_ints(ab->a);
+	nb_operations = 0;
 	while (len_base < ab->len) 
 	{
 		if (is_sorted(ab->a) && ab->a_or_b == 'a' && len_(ab->a) == ab->len)
-			return (0);
+			return (nb_operations);
 		nb_elts_l = nb_elts_before_main_loop(ab->len, len_base);
 		if (nb_elts_l > 0)
-			merge(ab, nb_elts_l - nb_elts_r, nb_elts_r);
+			merge(ab, nb_elts_l - nb_elts_r, nb_elts_r, print_operations);
 		nb_elts_r = nb_elts_l;
-		merge_main_loop(ab, len_base);
+		merge_main_loop(ab, len_base, print_operations);
 		change_ab(ab);
 		//printf("len_base = %d, sur %c : ",len_base,ab->a_or_b);
 		//print_ints(ab->a);
@@ -113,53 +115,69 @@ int	sort1(t_two_stacks *ab) // 100 : 1133 = 2 points, 500 : 7181 = 3 points
 	if (ab->a_or_b == 'b') 
 	{
 		//printf("push_all_from_b_to_a\n");
-		push_all_from_b_to_a(ab);
+		push_all_from_b_to_a(ab, print_operations);
 	}
 	if (ab->a_or_b == 'a' && ab->inc_or_dec == 'i') // 8 .. 15, 32 .. 63, 128 .. 255, 512 ..
-		inverse_a(ab);
-	return (0);
+		inverse_a(ab, print_operations);
+	return (nb_operations);
 }
 
-static int has_0_at_place_p(unsigned int un, int p)
+static int what_is_at_place_p(unsigned int un, int p)
 {
-	//printf("%11u %s return(%d)\n",un,convert_to_binary(un),(int)((un>>p) & 00000000000000000000000000000001));
-	return (((int)((un>>p) & 00000000000000000000000000000001)) + 1 ) % 2;
+	return ((int)((un>>p) & 00000000000000000000000000000001));
 }
 
-static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p)
+static int	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p, int print_operations)
 {
 	unsigned long	begin;
-	int i;
+	int						i;
+	int						only_ones_at_place_p;
+	int						only_zeros_at_place_p;
+	t_stk					*cur;	
 
+	only_ones_at_place_p = 1;
+	only_zeros_at_place_p = 1;
+	begin = (*(ab->a))->un;
+	cur = *(ab->a);
+	i = 0;
+	while (i < ab->len)
+	{
+		if (what_is_at_place_p(cur->un, p) == 0)
+			only_zeros_at_place_p = 0;
+		if (what_is_at_place_p(cur->un, p) == 1)
+			only_ones_at_place_p = 0;
+		cur = cur->nxt;
+		i++;
+	}
+	if (only_ones_at_place_p == 1 || only_zeros_at_place_p == 1)
+		return (0);
 	begin = (*(ab->a))->un;
 	i = 0;
-	while (i < ab->len) //
+	while (i < ab->len)
 	{
-		if (has_0_at_place_p((*(ab->a))->un, p) == 1)
-			push(ab->a, ab->b, 'a');
+		if (what_is_at_place_p((*(ab->a))->un, p) == 0)
+			push(ab->a, ab->b, 'b', print_operations);
 		else
-			rotate(ab->a,'a');
-		if ((*(ab->a))->un == begin)
-			break ;
+			rotate(ab->a,'a', print_operations);
 		i++;
 	}
+	return (ab->len);
 }
 
-int	radix_sort(t_two_stacks *ab)
+int	radix_sort(t_two_stacks *ab, int print_operations) // 100 : 1081, 500 : 29074
 {
 	int	i;
-	print_all_info(ab->a);
+	int	nb_operations;
 
 	i = 0;
+	nb_operations = 0;
 	while (i < 32)
 	{
-		move_those_who_has_0_at_place_p(ab, i);
-		push_all_from_b_to_a2(ab);
+		nb_operations += move_those_who_has_0_at_place_p(ab, i, print_operations) + len_(ab->b);
+		push_all_from_b_to_a2(ab, print_operations);
 		i++;
 	}
-	print_all_info(ab->a);
-	print_all_info(ab->b);
-		return (0);
+	return (nb_operations);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/24 20:56:45 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/24 21:30:29 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static int	merge_main_loop(t_two_stacks *ab, int len_base, int print_operations)
 // 	}
 // }
 
-int	sort_2_4_8(t_two_stacks *ab, int print_operations) // 100 : 1133 = 2 points, 500 : 7181 = 3 points
+int	sort_2_4_8(t_two_stacks *ab, int print_operations) // 100 : 1124 = 2 points, 500 : 7170 = 3 points
 {
 	int	len_base;
 	int	nb_elts_r;
@@ -128,7 +128,6 @@ int	sort_2_4_8(t_two_stacks *ab, int print_operations) // 100 : 1133 = 2 points,
 		nb_operations += push_all_from_b_to_a(ab, print_operations);
 	if (ab->a_or_b == 'a' && ab->inc_or_dec == 'i') // 8 .. 15, 32 .. 63, 128 .. 255, 512 ..
 		nb_operations += inverse_a(ab, print_operations);
-	printf("nb_operations = %d\n", nb_operations);
 	return (nb_operations);
 }
 
@@ -174,7 +173,7 @@ static int	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p, int print_op
 	return (ab->len);
 }
 
-int	radix_sort(t_two_stacks *ab, int print_operations) // 100 : 1081, 500 : 29074
+int	radix_sort(t_two_stacks *ab, int print_operations) // 100 : 1081 = 3 points, 500 : 29074 = 0 points
 {
 	int	i;
 	int	nb_operations;

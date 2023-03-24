@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/03/24 20:57:37 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/24 21:24:25 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ all: ${NAME}
 #	@ ./${NAME} ${ARGS2_} | ./checker_linux ${ARGS2_}
 #	./${NAME} ${ARGS3} 
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS3} | wc -l
-#	@echo -n 3:'  ' ; ./${NAME} ${ARGS3} | wc -l
+#	@echo -n 3:'  ' ; ./${NAME} ${ARGS3}
 #	@echo -n 3:'  ' ; ./${NAME} ${ARGS3} | ./checker_linux ${ARGS3}
 #	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | wc -l
 #	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | ./checker_linux ${ARGS4}
@@ -132,12 +132,14 @@ all: ${NAME}
 #	@echo -n 64:' ' ; ./${NAME} ${ARGS64} | ./checker_linux ${ARGS64}
 #	@ echo -n 99:' ' ; ./${NAME} ${ARGS99} | wc -l
 #	@ echo -n 99:' ' ;  ./${NAME} ${ARGS99} | ./checker_linux ${ARGS99}
+	@ echo -n 100' ' ; ./${NAME} ${ARGS100}
 #	@ echo -n 100' ' ; ./${NAME} ${ARGS100} | wc -l
 #	@ echo -n 100' ' ; ./${NAME} ${ARGS100} | ./checker_linux ${ARGS100}
 #	@ echo -n 101' ' ; ./${NAME} ${ARGS101} | wc -l
 #	@ echo -n 101' ' ; ./${NAME} ${ARGS101} | ./checker_linux ${ARGS101}
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS500} | wc -l
-	@ echo 500' ' ; ./${NAME} ${ARGS500} | wc -l
+#	@ echo -n 500' ' ; ./${NAME} ${ARGS500}
+#	@ echo -n 500' ' ; ./${NAME} ${ARGS500} | wc -l
 #	@ echo -n 500' ' ; ./${NAME} ${ARGS500} | ./checker_linux ${ARGS500} 
 #	@ echo -n 501' ' ; ./${NAME} ${ARGS501} | wc -l ;
 #	@ echo -n 501' ' ; ./${NAME} ${ARGS501} | ./checker_linux ${ARGS501} 

@@ -6,17 +6,34 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/21 17:06:11 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:19:50 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+char	*convert_to_binary(unsigned int	un)
+{
+	char *str;
+	int		i;
+	int		p;
+
+	str = (char*)malloc(33); // free
+	str[32] = '\0';	
+	i = 31;
+	p = 0;
+	while (i >= 0)
+	{
+		str[i] = '0' + (int)((un >> p) & 00000000000000000000000000000001);
+		i--;
+		p++;
+	}
+	return (str);
+}
+
 int	put_int(int n, t_stk **a)
 {
 	t_stk	*new;
-	int		i;
-	int		p;
 
 	new = (t_stk *)malloc(sizeof(t_stk));
 	if (new == NULL)
@@ -25,16 +42,7 @@ int	put_int(int n, t_stk **a)
 	new->un = (unsigned int)((long)n + (long)INT_MIN);
 	new->nxt = NULL;	
 	new->prv = NULL;
-	new->str2 = (char*)malloc(33); // free
-	new->str2[32] = '\0';	
-	i = 31;
-	p = 0;
-	while (i >= 0)
-	{
-		new->str2[i] = '0' + ((int)((new->un >> p) & 00000000000000000000000000000001));
-		i--;
-		p++;
-	}
+	new->str2 = convert_to_binary(new->un);
 	put_elt(new, a);
 	return (1);
 }
@@ -77,7 +85,7 @@ int	len_(t_stk **a)
 	return (i);
 }
 
-void	push_all_from_b_to_a(t_two_stacks *ab)
+void	push_all_from_b_to_a(t_two_stacks *ab) // for sort2
 {
 	int	i;
 
@@ -92,6 +100,21 @@ void	push_all_from_b_to_a(t_two_stacks *ab)
 	*(ab->a) = *(ab->b);
 	*(ab->b) = NULL;
 }
+
+void	push_all_from_b_to_a2(t_two_stacks *ab) // for radix
+{
+	int	i;
+	int	len_b;
+
+	len_b = len_(ab->b);
+	i = 0;
+	while (i < len_b)
+	{
+		push(ab->b, ab->a, 'a');
+		i++;
+	}
+}
+
 
 void	inverse_a(t_two_stacks *ab)
 {

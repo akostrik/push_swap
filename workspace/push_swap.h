@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/21 16:51:37 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:53:42 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ int		put_args(t_stk	**a, int argc, char **argv);
 int		put_int(int n, t_stk **a);
 int		put_elt(t_stk	*new, t_stk **a);
 int		len_(t_stk **a);
+char	*convert_to_binary(unsigned int	un);
 void	push_all_from_b_to_a(t_two_stacks *ab);
+void	push_all_from_b_to_a2(t_two_stacks *ab);
 void	inverse_a(t_two_stacks *abs);
 void	change_ab(t_two_stacks *ab);
 char	change_id(char *c);

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/21 17:03:02 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:52:51 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	print_ints(t_stk	**a) ///////////////////////////////
 		return ;
 	}
 	cur = *a;
-	printf("\n%11d = %s\n", cur->n, cur->str2);
+	printf("\n%11d -> %12u = %s\n", cur->n, cur->un, cur->str2);
 	cur = cur->nxt;
 	i = 1;
 	while (cur != *a)
 	{
-		printf("%11d = %s\n", cur->n, cur->str2);
+	printf("%11d -> %12u = %s\n", cur->n, cur->un, cur->str2);
 		cur = cur->nxt;
 		i++;
 	}
@@ -86,7 +86,7 @@ void	print_all_info(t_stk	**a)
 	}
 	printf("list %p -> %p %d :\n",a,*a,(*a)->n);
 	cur = *a;
-	printf("%8p <- %p %2d -> %8p\n", cur->prv, cur, cur->n, cur->nxt);
+	printf("%8p <- %p %s -> %8p\n", cur->prv, cur, cur->str2, cur->nxt);
 	cur = cur->nxt;
 	while (cur != *a)
 	{
@@ -95,7 +95,7 @@ void	print_all_info(t_stk	**a)
 			printf("NULL "); 
 			continue;
 		}
-		printf("%8p <- %p %2d -> %8p\n", cur->prv, cur, cur->n, cur->nxt);
+		printf("%8p <- %p %s -> %8p\n", cur->prv, cur, cur->str2, cur->nxt);
 		cur = cur->nxt;
 	}
 	printf("\n");

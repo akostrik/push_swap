@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/21 17:09:03 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:21:32 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,36 +120,45 @@ int	sort1(t_two_stacks *ab) // 100 : 1133 = 2 points, 500 : 7181 = 3 points
 	return (0);
 }
 
-static int has_1_at_place_p(unsigned int un, int p)
+static int has_0_at_place_p(unsigned int un, int p)
 {
-	return ((int)((un >> p) & 00000000000000000000000000000001));
+	//printf("%11u %s return(%d)\n",un,convert_to_binary(un),(int)((un>>p) & 00000000000000000000000000000001));
+	return (((int)((un>>p) & 00000000000000000000000000000001)) + 1 ) % 2;
 }
 
-static void	move_those_who_has_1_at_place_p(t_two_stacks *ab, int p)
+static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p)
 {
-	t_stk	*cur;
+	unsigned long	begin;
+	int i;
 
-	cur = *(ab->a);
-	if (cur == cur->nxt)
-		if (has_1_at_place_p(cur->un, p))
-			push(ab->a, ab->b, 'a');
-	cur = cur->nxt;
-	while (cur != *(ab->a))
+	begin = (*(ab->a))->un;
+	i = 0;
+	while (i < ab->len) //
 	{
-		if (has_1_at_place_p(cur->un, p))
+		if (has_0_at_place_p((*(ab->a))->un, p) == 1)
 			push(ab->a, ab->b, 'a');
-		cur = cur->nxt;
+		else
+			rotate(ab->a,'a');
+		if ((*(ab->a))->un == begin)
+			break ;
+		i++;
 	}
 }
 
 int	radix_sort(t_two_stacks *ab)
 {
-		print_ints(ab->a);
-		print_ints(ab->b);
-		printf("move\n");
-		move_those_who_has_1_at_place_p(ab, 1);
-		print_ints(ab->a);
-		print_ints(ab->b);
+	int	i;
+	print_all_info(ab->a);
+
+	i = 0;
+	while (i < 32)
+	{
+		move_those_who_has_0_at_place_p(ab, i);
+		push_all_from_b_to_a2(ab);
+		i++;
+	}
+	print_all_info(ab->a);
+	print_all_info(ab->b);
 		return (0);
 }
 

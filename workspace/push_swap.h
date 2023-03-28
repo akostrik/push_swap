@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/24 21:32:04 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:59:14 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,48 @@
 # include <stddef.h>
 # include "libft/libft.h"
 
-typedef struct s_stk
+typedef struct	s_stk
 {
 	int						n;
 	unsigned int	un;
 	char					*str2;
 	struct s_stk	*nxt;
 	struct s_stk	*prv;
-	//int				place;
 }	t_stk;
+
+typedef struct	s_list_ops
+{
+	char							*op;
+	struct s_list_ops	*nxt;
+}	t_list_ops;
 
 // increasing or decreasing
 typedef struct s_two_stacks
 {
-	int		n;
-	t_stk	**a;
-	t_stk	**b;
-	char	a_or_b;
-	char	inc_or_dec;
-	int		len;
-	char	*ops_radix;
-	char	*ops_2_4_8;
+	int								n;
+	t_stk							**a;
+	t_stk							**b;
+	char							a_or_b;
+	char							inc_or_dec;
+	int								len;
+	struct s_list_ops	*radix_operations;
+	//struct s_list_ops	*sort_2_4_8;
 }	t_two_stacks;
 
 int		sort_5_and_shorter(t_two_stacks *ab, int print_operations);
 int		sort_2_4_8(t_two_stacks *ab, int print_operations);
-int		sort2(t_two_stacks *ab);
-int		radix_sort(t_two_stacks *ab, int print_operations);
-void	swap(t_stk	**a, char a_or_b, int print_operations);
-void	push(t_stk **from, t_stk **to, char a_or_b, int print_operations);
-void	rotate(t_stk **a, char a_or_b, int print_operations);
-void	reverse_rotate(t_stk **a, char a_or_b, int print_operations);
+void	radix_sort(t_two_stacks *ab, int print_operations);
+int		nb_operation_radix_sort(t_two_stacks *ab);
+void	swap(t_stk	**a, t_two_stacks *ab, char a_or_b, int print_operations);
+void	push(t_stk **from, t_stk **to, t_two_stacks *ab, char a_or_b, int print_operations);
+void	rotate(t_stk **a, t_two_stacks *ab, char a_or_b, int print_operations);
+void	reverse_rotate(t_stk **a, t_two_stacks *ab, char a_or_b, int print_operations);
 void	swap_two(t_two_stacks *ab, int print_operations);
 int		put_args(t_stk	**a, int argc, char **argv);
 int		put_int(int n, t_stk **a);
 int		put_elt(t_stk	*new, t_stk **a);
 int		len_(t_stk **a);
+int		len__(t_list_ops *ops);
 char	*convert_to_binary(unsigned int	un);
 int		push_all_from_b_to_a(t_two_stacks *ab, int print_operations);
 int		push_all_from_b_to_a2(t_two_stacks *ab, int print_operations);

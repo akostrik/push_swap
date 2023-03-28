@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:02:44 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/24 20:27:17 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:06:09 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	parse_string(const char *s, t_stk	**a)
 			break ;
 		if (put_int(n, a) == -1)
 			return (-1);
-		rotate(a, ' ', 0);
+		rotate(a, NULL, ' ', 0); ///////////////////////////
 		i += slide;
 	}
 	return (0);

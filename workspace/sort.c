@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/24 21:30:29 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:55:39 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,24 @@ static int	merge(t_two_stacks *ab, int lenl, int lenr, int print_operations)
 		if ((ab->inc_or_dec == 'i' && (*(ab->a))->n > (*(ab->a))->prv->n) \
 		|| (ab->inc_or_dec == 'd' && (*(ab->a))->n < (*ab->a)->prv->n))
 		{
-			reverse_rotate(ab->a, ab->a_or_b, print_operations);
+			reverse_rotate(ab->a, ab, ab->a_or_b, print_operations);
 			nb_operations++;
 			r++;
 		}
 		else
 			l++;
-		push(ab->a, ab->b, the_other(ab->a_or_b), print_operations);
+		push(ab->a, ab->b, ab, the_other(ab->a_or_b), print_operations);
 		nb_operations++;
 	}
 	while (l++ < lenl)
 	{
-		push(ab->a, ab->b, the_other(ab->a_or_b), print_operations);
+		push(ab->a, ab->b, ab, the_other(ab->a_or_b), print_operations);
 		nb_operations++;
 	}
 	while (r++ < lenr)
 	{
-		reverse_rotate(ab->a, ab->a_or_b, print_operations);
-		push(ab->a, ab->b, the_other(ab->a_or_b), print_operations);
+		reverse_rotate(ab->a, ab, ab->a_or_b, print_operations);
+		push(ab->a, ab->b, ab, the_other(ab->a_or_b), print_operations);
 		nb_operations += 2;
 	}
 	return (nb_operations);
@@ -79,22 +79,6 @@ static int	merge_main_loop(t_two_stacks *ab, int len_base, int print_operations)
 	}
 	return (nb_operations);
 }
-
-// static int	to_change_id(int len)
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	while (1)
-// 	{
-// 		if (len < i)
-// 			return (1);
-// 		i *= 2;
-// 		if (len < i)
-// 			return (0);
-// 		i *= 2;
-// 	}
-// }
 
 int	sort_2_4_8(t_two_stacks *ab, int print_operations) // 100 : 1124 = 2 points, 500 : 7170 = 3 points
 {
@@ -131,62 +115,135 @@ int	sort_2_4_8(t_two_stacks *ab, int print_operations) // 100 : 1124 = 2 points,
 	return (nb_operations);
 }
 
-static int what_is_at_place_p(unsigned int un, int p)
+static int what_is_at_bite_p(unsigned int un, int p)
 {
+	//printf("what_is in %u at_bite %d ? %d\n",un,p, (int)((un>>p) & 00000000000000000000000000000001));
 	return ((int)((un>>p) & 00000000000000000000000000000001));
 }
 
-static int	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p, int print_operations)
+static int only_zeros_at_bite_p_(t_two_stacks *ab, int p)
 {
-	unsigned long	begin;
-	int						i;
-	int						only_ones_at_place_p;
-	int						only_zeros_at_place_p;
-	t_stk					*cur;	
+	int		i;
+	t_stk	*cur;
 
-	only_ones_at_place_p = 1;
-	only_zeros_at_place_p = 1;
-	begin = (*(ab->a))->un;
 	cur = *(ab->a);
 	i = 0;
 	while (i < ab->len)
 	{
-		if (what_is_at_place_p(cur->un, p) == 0)
-			only_zeros_at_place_p = 0;
-		if (what_is_at_place_p(cur->un, p) == 1)
-			only_ones_at_place_p = 0;
+		if (what_is_at_bite_p(cur->un, p) == 1)
+			return (0);
 		cur = cur->nxt;
 		i++;
 	}
-	if (only_ones_at_place_p == 1 || only_zeros_at_place_p == 1)
-		return (0);
-	begin = (*(ab->a))->un;
+	return (1);
+}
+
+/*
+static void	remember_op(t_two_stacks *ab, char *op)
+{
+	t_list_ops	*new_op;
+	t_list_ops	*last_op;
+
+	new_op = (t_list_ops *)malloc(sizeof(t_list_ops));
+	new_op->op = op;
+	new_op->nxt = NULL;
+	last_op = ab->radix_operations;
+	while (last_op->nxt != NULL) // нерационально
+		last_op = last_op->nxt;
+	last_op->nxt = new_op;
+}
+*/
+static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p, int print_operations)
+{
+	int	i;
+
+	//if (only_zeros_at_bite_p_(ab, p) == 1)
+		//return ;
 	i = 0;
 	while (i < ab->len)
 	{
-		if (what_is_at_place_p((*(ab->a))->un, p) == 0)
-			push(ab->a, ab->b, 'b', print_operations);
+		if (what_is_at_bite_p((*(ab->a))->un, p) == 0)
+			push(ab->a, ab->b, ab, 'b', print_operations);
+			//remember_op(ab, "pb\n");
 		else
-			rotate(ab->a,'a', print_operations);
+			rotate(ab->a, ab, 'a', print_operations);
+			//remember_op(ab, "ra\n");
 		i++;
 	}
-	return (ab->len);
 }
 
-int	radix_sort(t_two_stacks *ab, int print_operations) // 100 : 1081 = 3 points, 500 : 29074 = 0 points
+static int	nothing_new_in_this_bite(t_two_stacks *ab, int p)
 {
-	int	i;
-	int	nb_operations;
+	t_stk	*cur;
+	int		j;
 
-	i = 0;
-	nb_operations = 0;
-	while (i < 32)
+	if (p == 0)
+		return (0);
+	if (p > 0)
 	{
-		nb_operations += move_those_who_has_0_at_place_p(ab, i, print_operations) + len_(ab->b);
-		push_all_from_b_to_a2(ab, print_operations);
-		i++;
+		cur = *(ab->a);
+		j = 0;
+		while (j < ab->len)
+		{
+			//printf("cur = %u\n", cur->un);
+			if (what_is_at_bite_p(cur->un, p) != what_is_at_bite_p(cur->un, p-1))
+				return (0);
+			j++;
+			cur = cur->nxt;
+		}
 	}
-	return (nb_operations);
+	return (1);
+}
+
+void	radix_sort(t_two_stacks *ab, int print_operations) // 100 : 1081 = 3 points, 500 : 29074 = 0 points
+{
+	int	p;
+
+	p = 0;
+	while (p < 32)
+	{
+		if (only_zeros_at_bite_p_(ab, p) == 1 || nothing_new_in_this_bite(ab, p) == 1)
+		{
+			p++;
+			continue ;
+		}
+		move_those_who_has_0_at_place_p(ab, p, print_operations);
+		push_all_from_b_to_a2(ab, print_operations);
+		p++;
+	}
+}
+
+int	nb_operation_radix_sort(t_two_stacks *ab)
+{
+	int	p;
+	int	j;
+	int	nb_ops;
+	int	nb_zeros;
+	t_stk	*cur;
+
+	p = 0;
+	nb_ops = 0;
+	while (p < 32)
+	{
+		if (only_zeros_at_bite_p_(ab, p) == 1 || nothing_new_in_this_bite(ab, p) == 1)
+		{
+			p++;
+			continue ;
+		}
+		j = 0;
+		nb_zeros = 0;
+		cur = *(ab->a);
+		while (j < ab->len)
+		{
+			if (what_is_at_bite_p(cur->un, p) == 0)
+				nb_zeros++;
+			j++;
+			cur = cur->nxt;
+		}
+		nb_ops += ab->len + nb_zeros;
+		p++;
+	}
+	return (nb_ops);
 }
 
 /*

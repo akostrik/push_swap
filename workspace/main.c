@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:57:16 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/24 21:40:30 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:25:52 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ int static	error(void)
 	return (0);
 }
 
-int apply_
-
 int	main(int argc, char **argv)
 {
 	t_two_stacks	*ab;
 	//int			nb_operations_radix;
-	int			nb_operations_2_4_8;
+	//int			nb_operations_2_4_8;
 
 	if (argc == 1)
 		exit (0);
@@ -42,12 +40,11 @@ int	main(int argc, char **argv)
 	ab->a_or_b = 'a';
 	ab->inc_or_dec = 'd';
 	ab->len = len_(ab->a);
-	//radix_sort(ab, 1);
-	//nb_operations_radix = radix_sort(ab, 0);
-	//printf("nb_operations_radix %d\n", nb_operations_radix);
+	radix_sort(ab, 1);
+	//print_all_info(ab->a);
+	//printf("radix sort %d operations\n", nb_operation_radix_sort(ab));
 	//sort_2_4_8(ab, 1);
-	nb_operations_2_4_8 = sort_2_4_8(ab, 0);
-	printf("nb_operations_2_4_8 %d\n", nb_operations_2_4_8);
+
 	free_stack(&(ab->a));
 	free_stack(&(ab->b));
 	free(ab);

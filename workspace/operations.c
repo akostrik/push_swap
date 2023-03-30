@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:46:18 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/28 16:04:26 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:29:16 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,17 @@ void	push(t_stk **from, t_stk **to, t_two_stacks *ab, char a_or_b, int print_ope
 
 void	rotate(t_stk **a, t_two_stacks *ab, char a_or_b, int print_operations)
 {
-	if (*a == NULL)
+	printf("rotate\n");
+	if (a == NULL || *a == NULL)
 		return ;
+	printf("rotate 2\n");
+	printf("ab = %p\n", ab);
+	printf("len = %d\n", ab->len);
+	if (ab->len <= 1)
+	{
+		printf("rotate return\n");
+		return ;
+	}
 	*a = (*a)->nxt;
 	print_operation("r", a_or_b, print_operations);
 	int tmp = ab->len; 	tmp++; //
@@ -92,6 +101,7 @@ void	rotate(t_stk **a, t_two_stacks *ab, char a_or_b, int print_operations)
 
 void	rotate_two(t_two_stacks *ab, int print_operations)
 {
+	// если обе длины 1, вернуться
 	rotate(ab->a, ab, ' ', print_operations);
 	rotate(ab->b, ab, ' ', print_operations);
 	print_operation("rr", 0, print_operations);

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:02:44 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/28 16:06:09 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:35:21 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ static int	convert_beginning_str_to_int(const char *s, int *n)
 	size_t	i;
 	ssize_t	slide;
 
+	printf("convert_beginning_str_to_int [%s]\n", s);
 	i = 0;
 	while (ft_iswhitespace(s[i]) == 1)
 		i++;
+	//printf("i = %zu\n",i);
 	if (s[i] == '\0')
 		return (-2);
 	if (ft_strncmp(&s[i], "-2147483648", 11) == 0)
@@ -60,6 +62,7 @@ static int	convert_beginning_str_to_int(const char *s, int *n)
 	if (slide == -1)
 		return (-1);
 	i += slide;
+	printf("return %zu\n",i);
 	return ((int)i);
 }
 
@@ -69,17 +72,22 @@ static int	parse_string(const char *s, t_stk	**a)
 	int	n;
 	int	slide;
 
+	printf("parse_string [%s]\n", s);
 	i = 0;
 	while (1)
 	{
+		printf("i = %d\n",i);
 		slide = convert_beginning_str_to_int(&s[i], &n);
 		if (slide == -1)
 			return (-1);
 		if (slide == -2)
 			break ;
+		printf("slide = %d\n",slide);
 		if (put_int(n, a) == -1)
 			return (-1);
+		printf("put ok %d\n",n);
 		rotate(a, NULL, ' ', 0); ///////////////////////////
+		printf("rotate ok\n");
 		i += slide;
 	}
 	return (0);
@@ -113,6 +121,7 @@ int	put_args(t_stk	**a, int argc, char **argv)
 {
 	int	n;
 
+	printf("put_args\n");
 	if (argc == 2)
 	{
 		if (parse_string(argv[1], a) == -1)

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/30 17:31:00 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:26:17 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ typedef struct s_two_stacks
 }	t_two_stacks;
 
 int		sort_5_and_shorter(t_two_stacks *ab, int print_operations);
-int		sort_2_4_8(t_two_stacks *ab, int print_operations);
 void	radix_sort(t_two_stacks *ab, int print_operations);
-int		nb_operation_radix_sort(t_two_stacks *ab);
 void	swap(t_stk	**a, t_two_stacks *ab, char a_or_b, int print_operations);
 void	push(t_stk **from, t_stk **to, t_two_stacks *ab, char a_or_b, int print_operations);
 void	rotate(t_stk **a, t_two_stacks *ab, char a_or_b, int print_operations);
@@ -62,18 +60,15 @@ int		put_args(t_stk	**a, int argc, char **argv);
 int		put_int(int n, t_stk **a);
 int		put_elt(t_stk	*new, t_stk **a);
 unsigned int		len_(t_stk **a);
-int		len__(t_list_ops *ops);
 char	*convert_to_binary(unsigned int	un);
-int		push_all_from_b_to_a(t_two_stacks *ab, int print_operations);
 int		push_all_from_b_to_a2(t_two_stacks *ab, int print_operations);
 int		inverse_a(t_two_stacks *abs, int print_operations);
 void	change_ab(t_two_stacks *ab);
 char	change_id(char *c);
 char	the_other(char c);
 void	free_stack(t_stk ***a);
-int		is_sorted(t_stk **a);
+int	is_sorted(t_two_stacks *ab);
 void	print_ints(t_stk	**a);
 void	print_all_info(t_stk	**a);
-//void	bubble_sort(t_stk **a);
 
 #endif

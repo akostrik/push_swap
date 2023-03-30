@@ -6,13 +6,13 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/30 17:31:48 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:28:24 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*convert_to_binary(unsigned int	un)
+char	*convert_to_binary(unsigned int	un) // tmp
 {
 	char *str;
 	int		i;
@@ -70,8 +70,13 @@ unsigned int	len_(t_stk **a)
 	unsigned int	i;
 	t_stk				*cur;
 
+	printf("len 0\n");
 	if (a == NULL || *a == NULL)
 		return (0);
+	printf("len 1\n");
+	if (*a == (*a)->nxt)
+		return (1);
+	printf("len 2\n");
 	cur = *a;
 	if (cur == cur->nxt)
 		return (1);
@@ -83,46 +88,6 @@ unsigned int	len_(t_stk **a)
 		cur = cur->nxt;
 	}
 	return (i);
-}
-
-int	len__(t_list_ops *ops)
-{
-	int		i;
-	t_list_ops	*cur;
-
-	if (ops == NULL)
-		return (0);
-	cur = ops;
-	i = 0;
-	while (cur->nxt != NULL)
-	{
-		i++;
-		cur = cur->nxt;
-	}
-	return (i);
-}
-
-int	push_all_from_b_to_a(t_two_stacks *ab, int print_operations) // for sort2
-{
-	unsigned int	i;
-	int						nb_operations;
-
-	i = 0;
-	nb_operations = 0;
-	while (i < ab->len)
-	{
-		if (ab->inc_or_dec == 'd')
-		{
-			reverse_rotate(ab->a, ab, 'b', print_operations);
-			nb_operations++;
-		}
-		push(ab->a, ab->b, ab, 'a', print_operations);
-		nb_operations++;
-		i++;
-	}
-	*(ab->a) = *(ab->b);
-	*(ab->b) = NULL;
-	return (nb_operations);
 }
 
 int	push_all_from_b_to_a2(t_two_stacks *ab, int print_operations) // for radix
@@ -138,29 +103,4 @@ int	push_all_from_b_to_a2(t_two_stacks *ab, int print_operations) // for radix
 		i++;
 	}
 	return (i);
-}
-
-
-int	inverse_a(t_two_stacks *ab, int print_operations)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < ab->len)
-	{
-		reverse_rotate(ab->a, ab, 'a', print_operations);
-		push(ab->a, ab->b, ab, 'b', print_operations);
-		i++;
-	}
-	*(ab->a) = *(ab->b);
-	*(ab->b) = NULL;
-	i = 0;
-	while (i < ab->len)
-	{
-		push(ab->a, ab->b, ab, 'a', print_operations);
-		i++;
-	}
-	*(ab->a) = *(ab->b);
-	*(ab->b) = NULL;
-	return (3 * ab->len);
 }

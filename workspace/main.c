@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:57:16 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/30 14:57:39 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:37:08 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	main(int argc, char **argv)
 	ab->a_or_b = 'a';
 	ab->inc_or_dec = 'd';
 	ab->len = len_(ab->a);
-	//radix_sort(ab, 1);
-	print_all_info(ab->a);
-	printf("radix sort %d operations\n", nb_operation_radix_sort(ab));
+	radix_sort(ab, 1);
+	//print_all_info(ab->a);
+	//printf("radix sort %d operations\n", nb_operation_radix_sort(ab));
 	//sort_2_4_8(ab, 1);
 
 	free_stack(&(ab->a));

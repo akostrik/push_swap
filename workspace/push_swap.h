@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/28 15:59:14 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:31:00 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,11 @@ typedef struct	s_list_ops
 // increasing or decreasing
 typedef struct s_two_stacks
 {
-	int								n;
 	t_stk							**a;
 	t_stk							**b;
 	char							a_or_b;
 	char							inc_or_dec;
-	int								len;
-	struct s_list_ops	*radix_operations;
-	//struct s_list_ops	*sort_2_4_8;
+	unsigned int			len;
 }	t_two_stacks;
 
 int		sort_5_and_shorter(t_two_stacks *ab, int print_operations);
@@ -64,7 +61,7 @@ void	swap_two(t_two_stacks *ab, int print_operations);
 int		put_args(t_stk	**a, int argc, char **argv);
 int		put_int(int n, t_stk **a);
 int		put_elt(t_stk	*new, t_stk **a);
-int		len_(t_stk **a);
+unsigned int		len_(t_stk **a);
 int		len__(t_list_ops *ops);
 char	*convert_to_binary(unsigned int	un);
 int		push_all_from_b_to_a(t_two_stacks *ab, int print_operations);

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/28 16:05:03 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:31:48 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int	put_elt(t_stk	*new, t_stk **a)
 	return (1);
 }
 
-int	len_(t_stk **a)
+unsigned int	len_(t_stk **a)
 {
-	int		i;
-	t_stk	*cur;
+	unsigned int	i;
+	t_stk				*cur;
 
 	if (a == NULL || *a == NULL)
 		return (0);
@@ -104,8 +104,8 @@ int	len__(t_list_ops *ops)
 
 int	push_all_from_b_to_a(t_two_stacks *ab, int print_operations) // for sort2
 {
-	int	i;
-	int	nb_operations;
+	unsigned int	i;
+	int						nb_operations;
 
 	i = 0;
 	nb_operations = 0;
@@ -143,7 +143,7 @@ int	push_all_from_b_to_a2(t_two_stacks *ab, int print_operations) // for radix
 
 int	inverse_a(t_two_stacks *ab, int print_operations)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < ab->len)

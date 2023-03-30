@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/30 15:03:28 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:37:05 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	merge_main_loop(t_two_stacks *ab, int len_base, int print_operations)
 
 int	sort_2_4_8(t_two_stacks *ab, int print_operations) // 100 : 1124 = 2 points, 500 : 7170 = 3 points
 {
-	int	len_base;
+	unsigned int	len_base;
 	int	nb_elts_r;
 	int	nb_elts_l;
 	int	nb_operations;
@@ -104,8 +104,6 @@ int	sort_2_4_8(t_two_stacks *ab, int print_operations) // 100 : 1124 = 2 points,
 		nb_elts_r = nb_elts_l;
 		nb_operations += merge_main_loop(ab, len_base, print_operations);
 		change_ab(ab);
-		//printf("len_base = %d, sur %c : ",len_base,ab->a_or_b);
-		//print_ints(ab->a);
 		len_base *= 2;
 	}
 	if (ab->a_or_b == 'b') 
@@ -117,14 +115,13 @@ int	sort_2_4_8(t_two_stacks *ab, int print_operations) // 100 : 1124 = 2 points,
 
 static int what_is_at_bite_p(unsigned int un, int p)
 {
-	//printf("what_is in %u at_bite %d ? %d\n",un,p, (int)((un>>p) & 00000000000000000000000000000001));
 	return ((int)((un>>p) & 00000000000000000000000000000001));
 }
 
 static int only_zeros_at_bite_p_(t_two_stacks *ab, int p)
 {
-	int		i;
-	t_stk	*cur;
+	unsigned int	i;
+	t_stk					*cur;
 
 	cur = *(ab->a);
 	i = 0;
@@ -155,7 +152,7 @@ static void	remember_op(t_two_stacks *ab, char *op)
 */
 static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p, int print_operations)
 {
-	int	i;
+	unsigned int	i;
 
 	//if (only_zeros_at_bite_p_(ab, p) == 1)
 		//return ;
@@ -177,47 +174,96 @@ static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p, int print_o
 
 static int	bite_p_double_another_bite(t_two_stacks *ab, int p)
 {
-	t_stk	*cur;
-	int		i;
-	int		q;
-	int smth_new_in_bite_q;
+	t_stk					*cur;
+	unsigned int	i;
+	int						q;
+	int						bite_p_double_bite_q;
 
 	if (p == 0)
 		return (0);
 	q = 0;
 	while (q < p)
 	{
-		smth_new_in_bite_q = 0;
+		bite_p_double_bite_q = 0;
 		cur = *(ab->a);
 		i = 0;
 		while (i < ab->len)
 		{
 			if (what_is_at_bite_p(cur->un, p) != what_is_at_bite_p(cur->un, q))
 			{
-				smth_new_in_bite_q = 1;
+				bite_p_double_bite_q = 1;
 				break;
 			}
 			i++;
 			cur = cur->nxt;
 		}
-		if (smth_new_in_bite_q == 0)
-		{
-			printf ("bite %d double bite %d (%d!=%d) \n",p,q,what_is_at_bite_p(cur->un, p),what_is_at_bite_p(cur->un, q));
+		if (bite_p_double_bite_q == 0)
 			return (1);
-		}
 		q++;
 	}
 	return (0);
 }
 
+static int already_sorted_by_bite_p(t_two_stacks *ab, int p)
+{
+	t_stk					*cur;
+	unsigned int	i;
+
+	cur = (*(ab->a))->nxt;
+	i = 1;
+	while (i < ab->len)
+	{
+		if (what_is_at_bite_p(cur->prv->un, p) > what_is_at_bite_p(cur->un, p))
+			return (0);
+		i++;
+		cur = cur->nxt;
+	}
+	return (1);
+}
+
+static void	replace_by_smaller_numbers(t_two_stacks *ab)
+{
+	unsigned int	i; // everythere unsigned int i ?
+	unsigned int	j;
+	t_stk	*min;
+	t_stk	*cur;
+
+	i = 0;
+	while (i < ab->len)
+	{
+		j = 0;
+		cur = *(ab->a);
+		while (j < ab->len)
+		{
+			if (cur->un >= i)
+				break;
+			j++;
+			cur = cur->nxt;
+		}
+		min = cur;
+		while (j < ab->len)
+		{
+			if (min->un > cur->un && cur->un >= i)
+				min = cur;
+			j++;
+			cur = cur->nxt;
+		}
+		min->un = i;
+		//printf("min = %u\n",min->un);
+		i++;
+	}
+}
+
 void	radix_sort(t_two_stacks *ab, int print_operations) // 100 : 1181 = 2 points, 500 : 8221 = 3 points
+// 100 1081 = 3 points, 500 22601 = 0 points, 6730 = 4 points
 {
 	int	p;
 
+	replace_by_smaller_numbers(ab);
 	p = 0;
 	while (p < 32)
 	{
-		if (only_zeros_at_bite_p_(ab, p) == 1 || bite_p_double_another_bite(ab, p) == 1)
+		if (only_zeros_at_bite_p_(ab, p) == 1 || bite_p_double_another_bite(ab, p) == 1 || already_sorted_by_bite_p(ab, p))
 		{
 			p++;
 			continue ;
@@ -231,7 +277,7 @@ void	radix_sort(t_two_stacks *ab, int print_operations) // 100 : 1181 = 2 points
 int	nb_operation_radix_sort(t_two_stacks *ab)
 {
 	int	p;
-	int	j;
+	unsigned int	i;
 	int	nb_ops;
 	int	nb_zeros;
 	t_stk	*cur;
@@ -240,19 +286,19 @@ int	nb_operation_radix_sort(t_two_stacks *ab)
 	nb_ops = 0;
 	while (p < 32)
 	{
-		if (only_zeros_at_bite_p_(ab, p) == 1 || bite_p_double_another_bite(ab, p) == 1)
+		if (only_zeros_at_bite_p_(ab, p) == 1 || bite_p_double_another_bite(ab, p) == 1 || already_sorted_by_bite_p(ab, p))
 		{
 			p++;
 			continue ;
 		}
-		j = 0;
+		i = 0;
 		nb_zeros = 0;
 		cur = *(ab->a);
-		while (j < ab->len)
+		while (i < ab->len)
 		{
 			if (what_is_at_bite_p(cur->un, p) == 0)
 				nb_zeros++;
-			j++;
+			i++;
 			cur = cur->nxt;
 		}
 		nb_ops += ab->len + nb_zeros;
@@ -262,27 +308,6 @@ int	nb_operation_radix_sort(t_two_stacks *ab)
 }
 
 /*
-int	deep_copy(t_stk **a, t_stk **copy)
-{
-	int		i;
-	int		len;
-	t_stk	*cur;
-
-	i = 0;
-	len = len_(a);
-	cur = (*a)->prv;
-	while (i < len)
-	{
-		if (put_int(cur->n, copy) == -1)
-			return (-1);
-		cur = cur->prv;
-		i++;
-	}
-	printf("deep_copy:\n");
-	print_ints(copy);
-	return (0);
-}
-
 void delete (int n, t_stk **a)
 {
 	t_stk	*cur;

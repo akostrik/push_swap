@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/28 17:55:39 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:03:28 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,37 +172,52 @@ static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p, int print_o
 	}
 }
 
-static int	nothing_new_in_this_bite(t_two_stacks *ab, int p)
+// 100 radix sort 1181 operations
+// 500 radix sort 8221 operations
+
+static int	bite_p_double_another_bite(t_two_stacks *ab, int p)
 {
 	t_stk	*cur;
-	int		j;
+	int		i;
+	int		q;
+	int smth_new_in_bite_q;
 
 	if (p == 0)
 		return (0);
-	if (p > 0)
+	q = 0;
+	while (q < p)
 	{
+		smth_new_in_bite_q = 0;
 		cur = *(ab->a);
-		j = 0;
-		while (j < ab->len)
+		i = 0;
+		while (i < ab->len)
 		{
-			//printf("cur = %u\n", cur->un);
-			if (what_is_at_bite_p(cur->un, p) != what_is_at_bite_p(cur->un, p-1))
-				return (0);
-			j++;
+			if (what_is_at_bite_p(cur->un, p) != what_is_at_bite_p(cur->un, q))
+			{
+				smth_new_in_bite_q = 1;
+				break;
+			}
+			i++;
 			cur = cur->nxt;
 		}
+		if (smth_new_in_bite_q == 0)
+		{
+			printf ("bite %d double bite %d (%d!=%d) \n",p,q,what_is_at_bite_p(cur->un, p),what_is_at_bite_p(cur->un, q));
+			return (1);
+		}
+		q++;
 	}
-	return (1);
+	return (0);
 }
 
-void	radix_sort(t_two_stacks *ab, int print_operations) // 100 : 1081 = 3 points, 500 : 29074 = 0 points
+void	radix_sort(t_two_stacks *ab, int print_operations) // 100 : 1181 = 2 points, 500 : 8221 = 3 points
 {
 	int	p;
 
 	p = 0;
 	while (p < 32)
 	{
-		if (only_zeros_at_bite_p_(ab, p) == 1 || nothing_new_in_this_bite(ab, p) == 1)
+		if (only_zeros_at_bite_p_(ab, p) == 1 || bite_p_double_another_bite(ab, p) == 1)
 		{
 			p++;
 			continue ;
@@ -225,7 +240,7 @@ int	nb_operation_radix_sort(t_two_stacks *ab)
 	nb_ops = 0;
 	while (p < 32)
 	{
-		if (only_zeros_at_bite_p_(ab, p) == 1 || nothing_new_in_this_bite(ab, p) == 1)
+		if (only_zeros_at_bite_p_(ab, p) == 1 || bite_p_double_another_bite(ab, p) == 1)
 		{
 			p++;
 			continue ;

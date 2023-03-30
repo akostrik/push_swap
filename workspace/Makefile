@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/03/28 17:25:58 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/30 14:36:02 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,9 +77,9 @@ all: ${NAME}
 #	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | ./checker_linux ${ARGS4}
 #	@echo -n 5:'  ' ; ./${NAME} ${ARGS5} | wc -l
 #	@echo -n 5:'  ' ; ./${NAME} ${ARGS5} | ./checker_linux ${ARGS5}
-#	@echo -n 6:'  ' ; ./${NAME} ${ARGS6}
-	@echo -n 6:'  ' ; ./${NAME} ${ARGS6} | wc -l
-	@echo -n 6:'  ' ; ./${NAME} ${ARGS6} | ./checker_linux ${ARGS6}
+	@echo -n 6:'  ' ; ./${NAME} ${ARGS6}
+#	@echo -n 6:'  ' ; ./${NAME} ${ARGS6} | wc -l
+#	@echo -n 6:'  ' ; ./${NAME} ${ARGS6} | ./checker_linux ${ARGS6}
 #	@echo -n 7:'  '
 #	@./${NAME} ${ARGS7} | wc -l
 #	@echo -n 7:'  ' ; ./${NAME} ${ARGS7} | ./checker_linux ${ARGS7}

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:21:18 by akostrik          #+#    #+#             */
-/*   Updated: 2022/11/18 15:29:39 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 19:23:59 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 
 #include "libft.h"
 
+
 void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
 
 	i = 0;
+	
 	while (i < n)
 	{
 		*((char *)s + i) = '\0';

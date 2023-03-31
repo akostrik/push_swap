@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 17:17:05 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 19:38:49 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	put_elt(t_stk	*new, t_stk **a)
 unsigned int	len_(t_stk **a)
 {
 	unsigned int	i;
-	t_stk				*cur;
+	t_stk					*cur;
 
 	if (a == NULL || *a == NULL)
 		return (0);

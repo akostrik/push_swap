@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 14:32:35 by akostrik          #+#    #+#              #
-#    Updated: 2023/02/22 10:55:12 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/31 19:24:28 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,20 +21,22 @@ SRCS   = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
           ft_printf.c ft_putnbr_base_10_fd.c ft_put_pointer_fd.c \
           ft_put_uns_long_fd.c ft_get_next_line.c \
           ft_get_next_line_utils.c ft_iswhitespace.c
+
 OBJS    = ${SRCS:.c=.o}
 HDRS    = .
 CFLAGS  = -Wall -Wextra -Werror
+CC      = cc
 
 all: ${NAME}
 
 ${NAME}: ${OBJS} libft.h
 	ar rc ${NAME} ${OBJS}
 
-%.o: %.c 
-	gcc -c ${CFLAGS} -o $@ $<
+%.o: %.c
+	${CC} -c ${CFLAGS} -o $@ $<
 
 clean:
-	rm -f ${OBJS} 
+	rm -f ${OBJS}
 
 fclean: clean
 	rm -f ${NAME}

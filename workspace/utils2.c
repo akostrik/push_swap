@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 17:18:51 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 19:47:39 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,27 @@ void	replace_by_smaller_numbers(t_two_stacks *ab)
 {
 	unsigned int	i;
 	unsigned int	j;
-	t_stk	*min;
-	t_stk	*cur;
+	t_stk					*min;
+	t_stk					*cur;
 
 	i = 0;
 	while (i < ab->len)
 	{
 		j = 0;
-		cur = *(ab->a);
-		while (j < ab->len)
+		min = *(ab->a);
+		while (j < ab->len && min->un < i)
 		{
-			if (cur->un >= i)
-				break;
 			j++;
-			cur = cur->nxt;
+			min = min->nxt;
 		}
-		min = cur;
-		while (j < ab->len)
+		cur = min;
+		while (j++ < ab->len)
 		{
 			if (min->un > cur->un && cur->un >= i)
 				min = cur;
-			j++;
 			cur = cur->nxt;
 		}
-		min->un = i;
-		i++;
+		min->un = i++;
 	}
 }
 
@@ -93,7 +89,10 @@ static void	free_stack_a(t_two_stacks *ab)
 
 void free_memory(t_two_stacks **ab)
 {
+	if (ab == NULL)
+		return ;
 	free_stack_a(*ab);
-	free((*ab)->b);
+	if ((*ab)->b != NULL)
+		free((*ab)->b);
 	free(*ab);
 }

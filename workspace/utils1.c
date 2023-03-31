@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 16:49:08 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 17:17:05 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ unsigned int	len_(t_stk **a)
 
 int	push_all_from_b_to_a(t_two_stacks *ab)
 {
-	int	i;
-	int	len_b;
+	unsigned int	i;
+	unsigned int	len_b;
 
 	len_b = len_(ab->b);
 	i = 0;

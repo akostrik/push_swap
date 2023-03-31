@@ -6,39 +6,11 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 16:08:13 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:51:15 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	free_stack(t_stk ***a)
-{
-	t_stk	*cur;
-	int		len;
-	int		i;
-
-	if (*a == NULL)
-		return ;
-	if (**a == NULL)
-	{
-		free (*a);
-		return ;
-	}
-	len = len_(*a);
-	i = 0;
-	cur = (**a)->nxt;
-	while (i < len - 2)
-	{
-		free(cur->prv);
-		cur = cur->nxt;
-		i++;
-	}
-	free(cur->prv);
-	if (len > 1)
-		free(cur);
-	free(*a);
-}
 
 //////////////////////////////////
 /*

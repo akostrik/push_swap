@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 16:48:15 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:57:18 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	rotate_a(t_two_stacks *ab);
 
 unsigned int		len_(t_stk **a);
 
-void	free_stack(t_stk ***a);
+void	free_memory(t_two_stacks **ab);
 int		is_sorted(t_two_stacks *ab);
 void	print_ints(t_stk	**a);
 void	print_all_info(t_stk	**a);

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/30 18:21:17 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:08:13 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,28 @@ void	free_stack(t_stk ***a)
 	free(*a);
 }
 
-void	print_ints(t_stk	**a) ///////////////////////////////
+//////////////////////////////////
+/*
+char	*convert_to_binary(unsigned int	un) // tmp
+{
+	char *str;
+	int		i;
+	int		p;
+
+	str = (char*)malloc(33); // free
+	str[32] = '\0';	
+	i = 31;
+	p = 0;
+	while (i >= 0)
+	{
+		str[i] = '0' + (int)((un >> p) & 00000000000000000000000000000001);
+		i--;
+		p++;
+	}
+	return (str);
+}
+
+void	print_ints(t_stk	**a)
 {
 	t_stk	*cur;
 	int	i;
@@ -88,4 +109,4 @@ void	print_all_info(t_stk	**a)
 		cur = cur->nxt;
 	}
 	printf("\n");
-}
+}*/

@@ -6,30 +6,11 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 15:03:11 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:24:17 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-char	*convert_to_binary(unsigned int	un) // tmp
-{
-	char *str;
-	int		i;
-	int		p;
-
-	str = (char*)malloc(33); // free
-	str[32] = '\0';	
-	i = 31;
-	p = 0;
-	while (i >= 0)
-	{
-		str[i] = '0' + (int)((un >> p) & 00000000000000000000000000000001);
-		i--;
-		p++;
-	}
-	return (str);
-}
 
 int	put_int(int n, t_stk **a)
 {
@@ -42,7 +23,7 @@ int	put_int(int n, t_stk **a)
 	new->un = (unsigned int)((long)n + (long)INT_MIN);
 	new->nxt = NULL;	
 	new->prv = NULL;
-	new->str2 = convert_to_binary(new->un);
+	//new->str2 = convert_to_binary(new->un);
 	put_elt(new, a);
 	return (1);
 }
@@ -87,7 +68,7 @@ unsigned int	len_(t_stk **a)
 	return (i);
 }
 
-int	push_all_from_b_to_a2(t_two_stacks *ab, int print_operations) // for radix
+int	push_all_from_b_to_a(t_two_stacks *ab, int print_operations)
 {
 	int	i;
 	int	len_b;
@@ -96,7 +77,7 @@ int	push_all_from_b_to_a2(t_two_stacks *ab, int print_operations) // for radix
 	i = 0;
 	while (i < len_b)
 	{
-		push(ab->b, ab->a, ab, 'a', print_operations);
+		push(ab, 'a', print_operations);
 		i++;
 	}
 	return (i);

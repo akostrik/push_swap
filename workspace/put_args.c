@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:02:44 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 15:02:16 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:23:09 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	convert_beginning_str_to_int(const char *s, int *n)
 	return ((int)i);
 }
 
-static int	parse_string(const char *s, t_stk	**a, t_two_stacks *ab)
+static int	parse_string(const char *s, t_two_stacks *ab)
 {
 	int	i;
 	int	n;
@@ -77,9 +77,9 @@ static int	parse_string(const char *s, t_stk	**a, t_two_stacks *ab)
 			return (-1);
 		if (slide == -2)
 			break ;
-		if (put_int(n, a) == -1)
+		if (put_int(n, ab->a) == -1)
 			return (-1);
-		rotate(a, ab, ' ', 0);
+		rotate_a(ab, 0);
 		i += slide;
 	}
 	return (0);
@@ -109,13 +109,13 @@ static int	double_argumets(t_stk **a)
 	return (0);
 }
 
-int	put_args(t_stk	**a, t_two_stacks *ab, int argc, char **argv)
+int	put_args(t_two_stacks *ab, int argc, char **argv)
 {
 	int	n;
 
 	if (argc == 2)
 	{
-		if (parse_string(argv[1], a, ab) == -1)
+		if (parse_string(argv[1], ab) == -1)
 			return (-1);
 	}
 	else
@@ -125,11 +125,11 @@ int	put_args(t_stk	**a, t_two_stacks *ab, int argc, char **argv)
 		{
 			if (convert_beginning_str_to_int(argv[argc--], &n) == -1)
 				return (-1);
-			if (put_int(n, a) == -1)
+			if (put_int(n, ab->a) == -1)
 				return (-1);
 		}
 	}
-	if (double_argumets(a) == 1)
+	if (double_argumets(ab->a) == 1)
 		return (-1);
 	return (0);
 }

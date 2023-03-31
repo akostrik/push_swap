@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/03/31 15:20:49 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/31 16:34:32 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,22 +22,20 @@ CFLAGS    = -Wall -Wextra -Werror
 LIBFT_A   = libft/libft.a
 CC        = cc
 ARGS0     = 
-ARGS1     = "   d  "
-#ARGS1     = "  -2147483648 "
-############################################################### !!!
+ARGS1     = "   -2147483648  "
 ARGS2    = 1 2
 ARGS3     = "3 -2147483648 1"
 ARGS4     = 1 3 4 2
-ARGS5     = "  5 3  -2147483648  -4 +2"
+ARGS5     = "  5 3  -2147483648  -4 d"
 ARGS6     = 4 -5 -2147483648 1 -6 2147483647
 ARGS7     = 1 4 6 +3 2 5 7
 ARGS8     = -2147483648 -2147483647 -2 -1 0 1 2 +2147483647
-ARGS9     = 1 4 6 3 9 2 8 5 7
-ARGS10_    = 1 2 3 4 5 6 7 8 9 10
-ARGS11     = 1 11 4 6 3 10 9 2 8 5 7
-ARGS12     = 1 11 4 6 3 10 9 2 8 5 12 7
-ARGS13     = 13 1 11 4 6 3 10 9 2 8 5 12 7
-ARGS14     = 13 1 14 11 4 6 3 10 9 2 8 5 12 7
+ARGS9     = 1 4 1 3 9 2 8 5 7
+ARGS10    = 1 2 3 4 5 6 7 8 9 10
+ARGS11    = 1 11 4 2147483648 3 10 9 2 8 5 7
+ARGS12    = 1 11 4 6 3 10 9 2 8 5 12 7
+ARGS13    = 13 1 11 4 6 3 10 9 2 8 5 12 7
+ARGS14    = 13 1 14 11 4 6 3 10 9 2 8 5 12 7
 ARGS15    = 1 +2147483647 15 8 6 3 2 5 14 13 10 11 9 7 12
 ARGS16    = 1 4 15 8 16 6 3 2 5 14 13 10 11 9 7 12
 ARGS17    = "1 4 15 8 16 6 3 2 5 14 17 13 10 11 9 7 12"
@@ -56,25 +54,18 @@ ARGS501   = -2147483648 2147483647 501 19 61 62 63 64 81 82 235 236 237 238 239 
 all: ${NAME}
 	clear
 
-#	@echo -n *** 0:'  '
-#	@ ./${NAME} ${ARGS0} | wc -l
-#	@./${NAME} ${ARGS0} | ./checker_linux ${ARGS0}
-#	@echo -n *** 1:'  '
-#	@ ./${NAME} ${ARGS1} | wc -l
+#	@echo 0:'  ' ; ./${NAME} ${ARGS0}
 #	@echo -n 1:'  ' ; ./${NAME} ${ARGS1} | wc -l
-#	@./${NAME} ${ARGS1} | ./checker_linux ${ARGS1}
-	@echo -n 1:'  ' ; ./${NAME} ${ARGS1}	
-# @echo -n 1:'  ' ; ./${NAME} ${ARGS1} | wc -l
 #	@echo -n 1:'  ' ; ./${NAME} ${ARGS1} | ./checker_linux ${ARGS1}
 #	@echo -n 2:'  ' ; ./${NAME} ${ARGS2} | wc -l
 #	@echo -n 2:'  ' ; ./${NAME} ${ARGS2} | ./checker_linux ${ARGS2}
 #	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS3} | wc -l
 #	@echo -n 3:'  ' ; ./${NAME} ${ARGS3} | wc -l
 #	@echo -n 3:'  ' ; ./${NAME} ${ARGS3} | ./checker_linux ${ARGS3}
-#	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | wc -l
-#	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | ./checker_linux ${ARGS4}
-#	@echo -n 5:'  ' ; ./${NAME} ${ARGS5} | wc -l
-#	@echo -n 5:'  ' ; ./${NAME} ${ARGS5} | ./checker_linux ${ARGS5}
+#	./${NAME} ${ARGS4}
+	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | wc -l
+	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | ./checker_linux ${ARGS4}
+#	@echo -n 5:'  ' ; ./${NAME} ${ARGS5}
 #	@echo -n 6:'  ' ; ./${NAME} ${ARGS6}
 #	@echo -n 6:'  ' ; ./${NAME} ${ARGS6} | wc -l
 #	@echo -n 6:'  ' ; ./${NAME} ${ARGS6} | ./checker_linux ${ARGS6}
@@ -84,15 +75,9 @@ all: ${NAME}
 #	@echo -n 8:'  ' ; ./${NAME} ${ARGS8}
 #	@echo -n 8:'  ' ; ./${NAME} ${ARGS8} | wc -l
 #	@echo -n 8:'  ' ; ./${NAME} ${ARGS8} | ./checker_linux ${ARGS8}
-#	@echo -n 9:'  ' ; ./${NAME} ${ARGS9} 
-#	@echo -n 9:'  ' ; ./${NAME} ${ARGS9} | ./checker_linux ${ARGS9}
-#	@echo -n 10:' '
-#	./${NAME} ${ARGS10}
-#	@echo -n 10:' ' ; ./${NAME} ${ARGS10} | wc -l
+#	@echo -n 9:'  ' ; ./${NAME} ${ARGS9}
 #	@echo -n 10:' ' ; ./${NAME} ${ARGS10} | ./checker_linux ${ARGS10}
-#	@echo -n 11:' '
-#	@./${NAME} ${ARGS11} | wc -l
-#	@echo -n 11:' ' ; ./${NAME} ${ARGS11} | ./checker_linux ${ARGS11}
+#	@echo -n 11:' ' ; ./${NAME} ${ARGS11}
 #	@echo -n 12:' '
 #	@./${NAME} ${ARGS12} | wc -l
 #	@echo -n 12:' ' ; ./${NAME} ${ARGS12} | ./checker_linux ${ARGS12}
@@ -130,12 +115,12 @@ all: ${NAME}
 #	@echo -n 64:' ' ; ./${NAME} ${ARGS64} | ./checker_linux ${ARGS64}
 #	@ echo -n 99:' ' ; ./${NAME} ${ARGS99} | wc -l
 #	@ echo -n 99:' ' ;  ./${NAME} ${ARGS99} | ./checker_linux ${ARGS99}
-#	@ echo -n 100' ' ; ./${NAME} ${ARGS100} | wc -l
-#	@ echo -n 100' ' ; ./${NAME} ${ARGS100} | ./checker_linux ${ARGS100}
+	@ echo -n 100' ' ; ./${NAME} ${ARGS100} | wc -l
+	@ echo -n 100' ' ; ./${NAME} ${ARGS100} | ./checker_linux ${ARGS100}
 #	@ echo -n 101' ' ; ./${NAME} ${ARGS101} | wc -l
 #	@ echo -n 101' ' ; ./${NAME} ${ARGS101} | ./checker_linux ${ARGS101}
-#	@ echo -n 500' ' ; ./${NAME} ${ARGS500} | wc -l
-#	@ echo -n 500' ' ; ./${NAME} ${ARGS500} | ./checker_linux ${ARGS500} 
+	@ echo -n 500' ' ; ./${NAME} ${ARGS500} | wc -l
+	@ echo -n 500' ' ; ./${NAME} ${ARGS500} | ./checker_linux ${ARGS500} 
 #	@ echo -n 501' ' ; ./${NAME} ${ARGS501} | wc -l ;
 #	@ echo -n 501' ' ; ./${NAME} ${ARGS501} | ./checker_linux ${ARGS501} 
 

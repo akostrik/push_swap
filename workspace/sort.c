@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/30 17:58:13 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:33:52 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p, int print_o
 	while (i < ab->len)
 	{
 		if (what_is_at_bite_p((*(ab->a))->un, p) == 0)
-			push(ab->a, ab->b, ab, 'b', print_operations);
+			push(ab, 'b', print_operations);
 		else
-			rotate(ab->a, ab, 'a', print_operations);
+			rotate_a(ab, print_operations);
 		i++;
 	}
 }
@@ -67,39 +67,6 @@ static int already_sorted_by_bite_p(t_two_stacks *ab, int p)
 	return (1);
 }
 
-static void	replace_by_smaller_numbers(t_two_stacks *ab)
-{
-	unsigned int	i;
-	unsigned int	j;
-	t_stk	*min;
-	t_stk	*cur;
-
-	i = 0;
-	while (i < ab->len)
-	{
-		j = 0;
-		cur = *(ab->a);
-		while (j < ab->len)
-		{
-			if (cur->un >= i)
-				break;
-			j++;
-			cur = cur->nxt;
-		}
-		min = cur;
-		while (j < ab->len)
-		{
-			if (min->un > cur->un && cur->un >= i)
-				min = cur;
-			j++;
-			cur = cur->nxt;
-		}
-		min->un = i;
-		i++;
-	}
-}
-
-// 100 1084 = 3 points, 500 6784 = 4 points
 void	radix_sort(t_two_stacks *ab, int print_operations)
 {
 	int	p;
@@ -116,8 +83,7 @@ void	radix_sort(t_two_stacks *ab, int print_operations)
 			continue ;
 		}
 		move_those_who_has_0_at_place_p(ab, p, print_operations);
-		push_all_from_b_to_a2(ab, print_operations);
+		push_all_from_b_to_a(ab, print_operations);
 		p++;
 	}
 }
-

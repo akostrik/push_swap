@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 16:24:17 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:49:08 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ unsigned int	len_(t_stk **a)
 	return (i);
 }
 
-int	push_all_from_b_to_a(t_two_stacks *ab, int print_operations)
+int	push_all_from_b_to_a(t_two_stacks *ab)
 {
 	int	i;
 	int	len_b;
@@ -77,7 +77,7 @@ int	push_all_from_b_to_a(t_two_stacks *ab, int print_operations)
 	i = 0;
 	while (i < len_b)
 	{
-		push(ab, 'a', print_operations);
+		push(ab, 'a');
 		i++;
 	}
 	return (i);

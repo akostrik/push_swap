@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 16:24:21 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:48:15 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,19 @@ typedef struct s_two_stacks
 	unsigned int			len;
 }	t_two_stacks;
 
-void	radix_sort(t_two_stacks *ab, int print_operations);
 int		put_args(t_two_stacks *ab, int argc, char **argv);
 int		put_int(int n, t_stk **a);
 int		put_elt(t_stk	*new, t_stk **a);
 void	replace_by_smaller_numbers(t_two_stacks *ab);
 
-void	push(t_two_stacks *ab, char a_or_b, int print_operations);
-void	rotate_a(t_two_stacks *ab, int print_operations);
+void	radix_sort(t_two_stacks *ab);
+int		push_all_from_b_to_a(t_two_stacks *ab);
+
+void	push(t_two_stacks *ab, char a_or_b);
+void	rotate_a(t_two_stacks *ab);
 
 unsigned int		len_(t_stk **a);
-char	*convert_to_binary(unsigned int	un);
-int		push_all_from_b_to_a(t_two_stacks *ab, int print_operations);
-int		inverse_a(t_two_stacks *abs, int print_operations);
+
 void	free_stack(t_stk ***a);
 int		is_sorted(t_two_stacks *ab);
 void	print_ints(t_stk	**a);

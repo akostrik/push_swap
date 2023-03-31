@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:46:18 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 16:34:00 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:48:54 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	print_operation(char op, char a_or_b, int print_operations)
 	}
 }
 
-void	push(t_two_stacks *ab, char a_or_b, int print_operations)
+void	push(t_two_stacks *ab, char a_or_b)
 {
 	t_stk	*moved;
 	t_stk **from;
@@ -45,22 +45,22 @@ void	push(t_two_stacks *ab, char a_or_b, int print_operations)
 	{
 		put_elt(moved, to);
 		*from = NULL;
-		print_operation('p', a_or_b, print_operations);
+		print_operation('p', a_or_b, 1);
 		return ;
 	}
 	moved->nxt->prv = moved->prv;
 	moved->prv->nxt = moved->nxt;
 	*from = moved->nxt;
 	put_elt(moved, to);
-	print_operation('p', a_or_b, print_operations);
+	print_operation('p', a_or_b, 1);
 }
 
-void	rotate_a(t_two_stacks *ab, int print_operations)
+void	rotate_a(t_two_stacks *ab)
 {
 	if (ab->a == NULL || *(ab->a) == NULL)
 		return ;
 	if (ab->len <= 1)
 		return ;
 	*(ab->a) = (*(ab->a))->nxt;
-	print_operation('r', 'a', print_operations);
+	print_operation('r', 'a', 1); // 1
 }

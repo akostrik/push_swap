@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 16:33:52 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:47:55 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int only_zeros_at_bite_p_(t_two_stacks *ab, int p)
 	return (1);
 }
 
-static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p, int print_operations)
+static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p)
 {
 	unsigned int	i;
 
@@ -43,9 +43,9 @@ static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p, int print_o
 	while (i < ab->len)
 	{
 		if (what_is_at_bite_p((*(ab->a))->un, p) == 0)
-			push(ab, 'b', print_operations);
+			push(ab, 'b');
 		else
-			rotate_a(ab, print_operations);
+			rotate_a(ab);
 		i++;
 	}
 }
@@ -67,7 +67,7 @@ static int already_sorted_by_bite_p(t_two_stacks *ab, int p)
 	return (1);
 }
 
-void	radix_sort(t_two_stacks *ab, int print_operations)
+void	radix_sort(t_two_stacks *ab)
 {
 	int	p;
 
@@ -82,8 +82,8 @@ void	radix_sort(t_two_stacks *ab, int print_operations)
 			p++;
 			continue ;
 		}
-		move_those_who_has_0_at_place_p(ab, p, print_operations);
-		push_all_from_b_to_a(ab, print_operations);
+		move_those_who_has_0_at_place_p(ab, p);
+		push_all_from_b_to_a(ab);
 		p++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/30 18:26:17 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:01:19 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	push(t_stk **from, t_stk **to, t_two_stacks *ab, char a_or_b, int print_ope
 void	rotate(t_stk **a, t_two_stacks *ab, char a_or_b, int print_operations);
 void	reverse_rotate(t_stk **a, t_two_stacks *ab, char a_or_b, int print_operations);
 void	swap_two(t_two_stacks *ab, int print_operations);
-int		put_args(t_stk	**a, int argc, char **argv);
+int		put_args(t_stk	**a, t_two_stacks *ab, int argc, char **argv);
 int		put_int(int n, t_stk **a);
 int		put_elt(t_stk	*new, t_stk **a);
 unsigned int		len_(t_stk **a);

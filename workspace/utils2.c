@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/30 18:21:02 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:03:32 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ int	is_sorted(t_two_stacks *ab)
 	t_stk	*cur;
 
 	if (ab->len <= 1)
-	{
-		printf ("is sorted\n");
 		return (1);
-	}
 	cur = *(ab->a);
 	while (cur->nxt != *(ab->a))
 	{

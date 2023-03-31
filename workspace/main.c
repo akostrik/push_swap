@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:57:16 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/30 18:33:34 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:03:48 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@ int	main(int argc, char **argv)
 	if (ab == NULL)
 		return (error());
 	ab->a = (t_stk **)malloc(sizeof(t_stk *));
-	printf("\n1) ab = %p\n", ab);
 	if (ab->a == NULL)
 		return (error()); // free(ab)
 	*(ab->a) = NULL;
 	ab->b = (t_stk **)malloc(sizeof(t_stk *));
-	if (ab->b == NULL || put_args(ab->a, argc, argv) == -1)
+	if (ab->b == NULL || put_args(ab->a, ab, argc, argv) == -1)
 		return (error());
 	*(ab->b) = NULL;
 	ab->a_or_b = 'a';

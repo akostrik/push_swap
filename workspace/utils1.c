@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/30 18:28:24 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:03:11 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,10 @@ unsigned int	len_(t_stk **a)
 	unsigned int	i;
 	t_stk				*cur;
 
-	printf("len 0\n");
 	if (a == NULL || *a == NULL)
 		return (0);
-	printf("len 1\n");
 	if (*a == (*a)->nxt)
 		return (1);
-	printf("len 2\n");
 	cur = *a;
 	if (cur == cur->nxt)
 		return (1);

@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/03/30 18:10:36 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/31 15:20:49 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CFLAGS    = -Wall -Wextra -Werror
 LIBFT_A   = libft/libft.a
 CC        = cc
 ARGS0     = 
-ARGS1     = 1
+ARGS1     = "   d  "
 #ARGS1     = "  -2147483648 "
 ############################################################### !!!
 ARGS2    = 1 2
@@ -63,8 +63,8 @@ all: ${NAME}
 #	@ ./${NAME} ${ARGS1} | wc -l
 #	@echo -n 1:'  ' ; ./${NAME} ${ARGS1} | wc -l
 #	@./${NAME} ${ARGS1} | ./checker_linux ${ARGS1}
-	@echo -n 1:'  ' ; ./${NAME} ${ARGS1}
-#	@echo -n 1:'  ' ; ./${NAME} ${ARGS1} | wc -l
+	@echo -n 1:'  ' ; ./${NAME} ${ARGS1}	
+# @echo -n 1:'  ' ; ./${NAME} ${ARGS1} | wc -l
 #	@echo -n 1:'  ' ; ./${NAME} ${ARGS1} | ./checker_linux ${ARGS1}
 #	@echo -n 2:'  ' ; ./${NAME} ${ARGS2} | wc -l
 #	@echo -n 2:'  ' ; ./${NAME} ${ARGS2} | ./checker_linux ${ARGS2}

@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/03/31 19:35:19 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/31 21:00:16 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 # ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
 
 NAME      = push_swap
-SRCS      = main.c put_args.c sort.c operations.c utils1.c utils2.c
+SRCS      = main.c put_args.c sort.c utils1.c utils2.c
 OBJS      = ${SRCS:.c=.o}
 HDRS      = push_swap.h
 CFLAGS    = -Wall -Wextra -Werror
@@ -64,8 +64,8 @@ all: ${NAME}
 	@echo -n 3:'  ' ; ./${NAME} ${ARGS3} | ./checker_linux ${ARGS3}
 #	./${NAME} ${ARGS4}
 #	@echo -n 4:'  ' ; ./${NAME} ${ARGS4}
-	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | wc -l
-	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | ./checker_linux ${ARGS4}
+#	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | wc -l
+#	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | ./checker_linux ${ARGS4}
 #	@echo -n 5:'  ' ; ./${NAME} ${ARGS5}
 #	@echo -n 6:'  ' ; ./${NAME} ${ARGS6}
 #	@echo -n 6:'  ' ; ./${NAME} ${ARGS6} | wc -l
@@ -77,8 +77,8 @@ all: ${NAME}
 #	@echo -n 8:'  ' ; ./${NAME} ${ARGS8} | wc -l
 #	@echo -n 8:'  ' ; ./${NAME} ${ARGS8} | ./checker_linux ${ARGS8}
 	@echo -n 9:'  ' ; ./${NAME} ${ARGS9}
-	@echo -n 10:' ' ; ./${NAME} ${ARGS10} | ./checker_linux ${ARGS10}
-	@echo -n 11:' ' ; ./${NAME} ${ARGS11}
+#	@echo -n 10:' ' ; ./${NAME} ${ARGS10} | ./checker_linux ${ARGS10}
+#	@echo -n 11:' ' ; ./${NAME} ${ARGS11}
 #	@echo -n 12:' '
 #	@./${NAME} ${ARGS12} | wc -l
 #	@echo -n 12:' ' ; ./${NAME} ${ARGS12} | ./checker_linux ${ARGS12}

@@ -6,15 +6,27 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 19:32:27 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 20:16:00 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int what_is_at_bite_p(unsigned int un, int p)
+static int already_sorted_by_bite_p(t_two_stacks *ab, int p)
 {
-	return ((int)((un>>p) & 00000000000000000000000000000001));
+	t_stk					*cur;
+	unsigned int	i;
+
+	cur = (*(ab->a))->nxt;
+	i = 1;
+	while (i < ab->len)
+	{
+		if (what_is_at_bite_p(cur->prv->un, p) > what_is_at_bite_p(cur->un, p))
+			return (0);
+		i++;
+		cur = cur->nxt;
+	}
+	return (1);
 }
 
 static int only_zeros_at_bite_p_(t_two_stacks *ab, int p)
@@ -49,21 +61,16 @@ static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p)
 	}
 }
 
-static int already_sorted_by_bite_p(t_two_stacks *ab, int p)
+static int	push_all_from_b_to_a(t_two_stacks *ab)
 {
-	t_stk					*cur;
 	unsigned int	i;
+	unsigned int	len_b;
 
-	cur = (*(ab->a))->nxt;
-	i = 1;
-	while (i < ab->len)
-	{
-		if (what_is_at_bite_p(cur->prv->un, p) > what_is_at_bite_p(cur->un, p))
-			return (0);
-		i++;
-		cur = cur->nxt;
-	}
-	return (1);
+	len_b = len_(ab->b);
+	i = 0;
+	while (i++ < len_b)
+		push(ab, 'a');
+	return (i);
 }
 
 void	radix_sort(t_two_stacks *ab)
@@ -72,7 +79,6 @@ void	radix_sort(t_two_stacks *ab)
 
 	if (is_sorted(ab) == 1)
 		return ;
-	replace_by_smaller_numbers(ab);
 	p = 0;
 	while (p < 32)
 	{

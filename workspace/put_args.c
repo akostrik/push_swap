@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:02:44 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 16:43:52 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 20:59:51 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int	put_args(t_two_stacks *ab, int argc, char **argv)
 				return (-1);
 		}
 	}
+	ab->len = len_(ab->a);
 	if (double_argumets(ab->a) == 1)
 		return (-1);
 	return (0);

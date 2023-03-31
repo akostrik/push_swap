@@ -6,14 +6,15 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:57:16 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 19:32:00 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:00:02 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int static	error(void) // t_two_stacks	*ab
+int static	error(t_two_stacks	**ab) // t_two_stacks	*ab
 {
+	free_memory(ab);
 	ft_putstr_fd("Error\n", 2);
 	return (0);
 }
@@ -26,16 +27,18 @@ int	main(int argc, char **argv)
 		exit (0);
 	ab = (t_two_stacks *)malloc(sizeof(t_two_stacks));
 	if (ab == NULL)
-		return (error());
+		return (error(&ab));
 	ab->a = (t_stk **)malloc(sizeof(t_stk *));
 	if (ab->a == NULL)
-		return (error()); // free(ab)
+		return (error(&ab));
 	*(ab->a) = NULL;
 	ab->b = (t_stk **)malloc(sizeof(t_stk *));
-	if (ab->b == NULL || put_args(ab, argc, argv) == -1)
-		return (error());
+	if (ab->b == NULL)
+		return (error(&ab));
 	*(ab->b) = NULL;
-	ab->len = len_(ab->a);
+	if (put_args(ab, argc, argv) == -1)
+		return (error(&ab));
+	replace_by_smaller_numbers(ab);
 	radix_sort(ab);
 	free_memory(&ab);
 	return (0);

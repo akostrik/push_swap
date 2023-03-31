@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 20:59:37 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:12:12 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ void	free_stack_a(t_two_stacks *ab)
 {
 	t_stk					*cur;
 	unsigned int	i;
+	unsigned int	len;
 
+	len = len_(ab->a);
 	if (ab->a == NULL)
 		return ;
 	if (*(ab->a) == NULL)
@@ -73,14 +75,14 @@ void	free_stack_a(t_two_stacks *ab)
 		free (*(ab->a));
 		return ;
 	}
-	if (ab->len == 1)
+	if (len == 1)
 	{
 		free(*(ab->a));
 		return ;
 	}
 	i = 0;
 	cur = (*(ab->a))->nxt;
-	while (i < ab->len - 2)
+	while (i < len - 2)
 	{
 		free(cur->prv);
 		cur = cur->nxt;

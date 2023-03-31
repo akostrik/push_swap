@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/03/31 21:00:16 by akostrik         ###   ########.fr        #
+#    Updated: 2023/03/31 21:16:13 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,31 +54,26 @@ ARGS501   = -2147483648 2147483647 501 19 61 62 63 64 81 82 235 236 237 238 239 
 all: ${NAME}
 #	clear
 
-	@echo 0:'  ' ; ./${NAME} ${ARGS0}
-	@echo -n 1:'  ' ; ./${NAME} ${ARGS1} | wc -l
-	@echo -n 1:'  ' ; ./${NAME} ${ARGS1} | ./checker_linux ${ARGS1}
-	@echo -n 2:'  ' ; ./${NAME} ${ARGS2} | wc -l
-	@echo -n 2:'  ' ; ./${NAME} ${ARGS2} | ./checker_linux ${ARGS2}
-#	@ valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS3} | wc -l
-	@echo -n 3:'  ' ; ./${NAME} ${ARGS3} | wc -l
-	@echo -n 3:'  ' ; ./${NAME} ${ARGS3} | ./checker_linux ${ARGS3}
-#	./${NAME} ${ARGS4}
-#	@echo -n 4:'  ' ; ./${NAME} ${ARGS4}
+	@echo 0:'  ' ; valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS0}
+	@echo -n 1:'  ' ; valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS1} | wc -l
+#	@echo -n 1:'  ' ; ./${NAME} ${ARGS1} | ./checker_linux ${ARGS1}
+	@echo -n 2:'  ' ; valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS2} | wc -l
+#	@echo -n 2:'  ' ; ./${NAME} ${ARGS2} | ./checker_linux ${ARGS2}
+	@echo -n 3:'  ' ; valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS3} | wc -l
+#	@echo -n 3:'  ' ; ./${NAME} ${ARGS3} | ./checker_linux ${ARGS3}
 #	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | wc -l
 #	@echo -n 4:'  ' ; ./${NAME} ${ARGS4} | ./checker_linux ${ARGS4}
 #	@echo -n 5:'  ' ; ./${NAME} ${ARGS5}
-#	@echo -n 6:'  ' ; ./${NAME} ${ARGS6}
 #	@echo -n 6:'  ' ; ./${NAME} ${ARGS6} | wc -l
 #	@echo -n 6:'  ' ; ./${NAME} ${ARGS6} | ./checker_linux ${ARGS6}
-#	@echo -n 7:'  '
-#	@./${NAME} ${ARGS7} | wc -l
+#	@echo -n 7:'  ' ; ./${NAME} ${ARGS7} | wc -l
 #	@echo -n 7:'  ' ; ./${NAME} ${ARGS7} | ./checker_linux ${ARGS7}
 #	@echo -n 8:'  ' ; ./${NAME} ${ARGS8}
 #	@echo -n 8:'  ' ; ./${NAME} ${ARGS8} | wc -l
 #	@echo -n 8:'  ' ; ./${NAME} ${ARGS8} | ./checker_linux ${ARGS8}
-	@echo -n 9:'  ' ; ./${NAME} ${ARGS9}
-#	@echo -n 10:' ' ; ./${NAME} ${ARGS10} | ./checker_linux ${ARGS10}
-#	@echo -n 11:' ' ; ./${NAME} ${ARGS11}
+	@echo -n 9:'  ' ; valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS9}
+	@echo -n 10:' ' ; valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS10}
+	@echo -n 11:' ' ; valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${ARGS11}
 #	@echo -n 12:' '
 #	@./${NAME} ${ARGS12} | wc -l
 #	@echo -n 12:' ' ; ./${NAME} ${ARGS12} | ./checker_linux ${ARGS12}
@@ -117,12 +112,12 @@ all: ${NAME}
 #	@ echo -n 99:' ' ; ./${NAME} ${ARGS99} | wc -l
 #	@ echo -n 99:' ' ;  ./${NAME} ${ARGS99} | ./checker_linux ${ARGS99}
 #	@ echo -n 100' ' ; ./${NAME} ${ARGS100}
-	@ echo -n 100' ' ; ./${NAME} ${ARGS100} | wc -l
-	@ echo -n 100' ' ; ./${NAME} ${ARGS100} | ./checker_linux ${ARGS100}
+	@ echo -n 100' ' ; valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS100} | wc -l
+#	@ echo -n 100' ' ; valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS100} | ./checker_linux ${ARGS100}
 #	@ echo -n 101' ' ; ./${NAME} ${ARGS101} | wc -l
 #	@ echo -n 101' ' ; ./${NAME} ${ARGS101} | ./checker_linux ${ARGS101}
-	@ echo -n 500' ' ; ./${NAME} ${ARGS500} | wc -l
-	@ echo -n 500' ' ; ./${NAME} ${ARGS500} | ./checker_linux ${ARGS500} 
+	@ echo -n 500' ' ; valgrind --leak-check=full --show-leak-kinds=all ./${NAME} ${ARGS500} | wc -l
+#	@ echo -n 500' ' ; ./${NAME} ${ARGS500} | ./checker_linux ${ARGS500} 
 #	@ echo -n 501' ' ; ./${NAME} ${ARGS501} | wc -l ;
 #	@ echo -n 501' ' ; ./${NAME} ${ARGS501} | ./checker_linux ${ARGS501} 
 

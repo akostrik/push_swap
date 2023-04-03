@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 20:16:17 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:28:44 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	free_memory(t_two_stacks **ab);
 int		what_is_at_bite_p(unsigned int un, int p);
 int	is_sorted(t_two_stacks *ab);
 
-//void	print_ints(t_stk	**a);
+void	print_ints(t_stk	**a);
 //void	print_all_info(t_stk	**a);
 
 #endif

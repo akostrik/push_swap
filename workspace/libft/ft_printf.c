@@ -6,27 +6,11 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:46:18 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 18:25:56 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:08:32 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// Une bibliothèque qui contient ft_printf(), imitant printf() originale
-// Contrairement à printf(), ne pas gérer de buffer
-// %c caractère
-// %s chaîne (telle que définie par la convention C)
-// %p L’argument de pointeur void * doit être affiché en hexadécimal
-// %d nombre décimal (base 10)
-// %i entier en base 10
-// %u nombre décimal non signé (base 10)
-// %x nombre en hexadécimal (base 16) avec des lettres minuscules
-// %X nombre en hexadécimal (base 16) avec des lettres majuscules
-// %% %
-// обязательный аргумент – первое переданное число, если его не передавать, то
-// не сможем найти адрес, по которому размещаются переменные в стеке
-// Upon successful return, returns the number of characters printed 
-// (excluding the null byte used to end output to strings)
 
 static int	is_conversion(const char *s)
 {

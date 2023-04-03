@@ -6,13 +6,13 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 20:16:00 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:12:56 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int already_sorted_by_bite_p(t_two_stacks *ab, int p)
+static int is_sorted_by_bite_p(t_two_stacks *ab, int p)
 {
 	t_stk					*cur;
 	unsigned int	i;
@@ -29,24 +29,7 @@ static int already_sorted_by_bite_p(t_two_stacks *ab, int p)
 	return (1);
 }
 
-static int only_zeros_at_bite_p_(t_two_stacks *ab, int p)
-{
-	unsigned int	i;
-	t_stk					*cur;
-
-	cur = *(ab->a);
-	i = 0;
-	while (i < ab->len)
-	{
-		if (what_is_at_bite_p(cur->un, p) == 1)
-			return (0);
-		cur = cur->nxt;
-		i++;
-	}
-	return (1);
-}
-
-static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p)
+static void	move_those_who_has_0_at_bite_p(t_two_stacks *ab, int p)
 {
 	unsigned int	i;
 
@@ -61,7 +44,7 @@ static void	move_those_who_has_0_at_place_p(t_two_stacks *ab, int p)
 	}
 }
 
-static int	push_all_from_b_to_a(t_two_stacks *ab)
+static int	push_all_from_b_to_a(t_two_stacks *ab) // void ?
 {
 	unsigned int	i;
 	unsigned int	len_b;
@@ -70,24 +53,26 @@ static int	push_all_from_b_to_a(t_two_stacks *ab)
 	i = 0;
 	while (i++ < len_b)
 		push(ab, 'a');
-	return (i);
+	return (i - 1);
 }
 
+// 1084 = 3 points, 6784 = 4 points
 void	radix_sort(t_two_stacks *ab)
 {
 	int	p;
 
-	if (is_sorted(ab) == 1)
-		return ;
 	p = 0;
 	while (p < 32)
 	{
-		if (only_zeros_at_bite_p_(ab, p) == 1 || already_sorted_by_bite_p(ab, p))
+		if (is_sorted(ab) == 1)
+			return ;
+		if (is_sorted_by_bite_p(ab, p))
 		{
 			p++;
 			continue ;
 		}
-		move_those_who_has_0_at_place_p(ab, p);
+		move_those_who_has_0_at_bite_p(ab, p);
+		//printf("p = %d, %d operations\n",p,ab->len+push_all_from_b_to_a(ab));
 		push_all_from_b_to_a(ab);
 		p++;
 	}

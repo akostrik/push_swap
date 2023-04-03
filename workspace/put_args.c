@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:02:44 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 20:59:51 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:10:16 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@ static int	convert_one_number(const char *s, int *n)
 
 	sign = 1;
 	i = 0;
-	if (s[i] == '-')
+	if (s[i] == '-' || s[i] == '+')
 	{
-		sign = -1;
+		if (s[i] == '-')
+			sign = -1;
 		i++;
 		if (!ft_isdigit(s[i]))
 			return (-1);
 	}
-	if (s[i] == '+')
-		i++;
 	while (s[i] == '0')
 		i++;
 	*n = 0;
@@ -85,20 +84,18 @@ static int	parse_string(const char *s, t_two_stacks *ab)
 	return (0);
 }
 
-static int	double_argumets(t_stk **a)
+static int	double_argumets(t_two_stacks *ab)
 {
 	t_stk	*cur1;
 	t_stk	*cur2;
 
-	if (a == NULL || *a == NULL)
+	if (ab->len <= 1)
 		return (0);
-	if (*a == (*a)->nxt)
-		return (0);
-	cur1 = *a;
-	while (cur1 != (*a)->prv)
+	cur1 = *(ab->a);
+	while (cur1 != (*(ab->a))->prv)
 	{
 		cur2 = cur1->nxt;
-		while (cur2 != *a)
+		while (cur2 != *(ab->a))
 		{
 			if (cur1->n == cur2->n && cur1 != cur2)
 				return (1);
@@ -112,6 +109,7 @@ static int	double_argumets(t_stk **a)
 int	put_args(t_two_stacks *ab, int argc, char **argv)
 {
 	int	n;
+	int	return_of_convert;
 
 	if (argc == 2)
 	{
@@ -123,14 +121,17 @@ int	put_args(t_two_stacks *ab, int argc, char **argv)
 		argc--;
 		while (argc > 0)
 		{
-			if (convert_beginning_str_to_int(argv[argc--], &n) == -1)
+			return_of_convert = convert_beginning_str_to_int(argv[argc--], &n);
+			if (return_of_convert == -1)
 				return (-1);
+			else if (return_of_convert == -2)
+				continue ;
 			if (put_int(n, ab->a) == -1)
 				return (-1);
 		}
 	}
 	ab->len = len_(ab->a);
-	if (double_argumets(ab->a) == 1)
+	if (double_argumets(ab) == 1)
 		return (-1);
 	return (0);
 }

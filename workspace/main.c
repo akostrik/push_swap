@@ -6,16 +6,16 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:57:16 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 21:09:27 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:10:09 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int static	error(t_two_stacks	**ab) // t_two_stacks	*ab
+int static	error(t_two_stacks **ab)
 {
 	free_memory(ab);
-	ft_putstr_fd("Error\n", 2);
+	write(2, "Error\n", ft_strlen("Error\n"));
 	return (0);
 }
 

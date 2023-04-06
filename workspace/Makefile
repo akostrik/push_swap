@@ -6,7 +6,7 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/04/06 13:52:44 by akostrik         ###   ########.fr        #
+#    Updated: 2023/04/06 14:07:47 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,77 +65,76 @@ ARGS_10    = "2 5 6+3"
 
 all: ${NAME}
 	clear
-	@echo Empty output is expected:
-	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_1}
-	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_2}
-	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_3}
-	@echo -n Error is expected:' '
-	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_4}
-	@echo -n
-	@echo -n Error is expected:' '
-	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_6}
-	@echo -n Error is expected:' '
-	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_7}
-	@echo -n Error is expected:' '
-	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_9}
-	@echo -n Error is expected:' '
-	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_10}
-
-	@echo -n Error is expected:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS5}
-	@echo -n Error is expected:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS9}
-	@echo Empty output is expected:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS10}
-	@echo -n Error is expected:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS11}
+#	@echo Empty output is expected:
+#	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_1}
+#	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_2}
+#	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_3}
+#	@echo -n Error is expected:' '
+#	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_4}
+#	@echo -n
+#	@echo -n Error is expected:' '
+#	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_6}
+#	@echo -n Error is expected:' '
+#	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_7}
+#	@echo -n Error is expected:' '
+#	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_9}
+#	@echo -n Error is expected:' '
+#	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_10}
+#	@echo -n Error is expected:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS5}
+#	@echo -n Error is expected:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS9}
+#	@echo Empty output is expected:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS10}
+#	@echo -n Error is expected:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS11}
 
 	@echo -n 0:'   '     ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS0} | wc -l
 #	@echo -n 0:'   '  ; ./${NAME} ${ARGS0} | ./checker_linux ${ARGS0}
 	@echo -n 1:'   '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS1} | wc -l
-#	@echo -n 1:'   '  ; ./${NAME} ${ARGS1} | ./checker_linux ${ARGS1}
+	@echo -n 1:'   '  ; ./${NAME} ${ARGS1} | ./checker_linux ${ARGS1}
 	@echo -n 2:'   '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS2} | wc -l
-#	@echo -n 2:'   '  ; ./${NAME} ${ARGS2} | ./checker_linux ${ARGS2}
+	@echo -n 2:'   '  ; ./${NAME} ${ARGS2} | ./checker_linux ${ARGS2}
 	@echo -n 3:'   '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS3} | wc -l
-#	@echo -n 3:'   '  ; ./${NAME} ${ARGS3} | ./checker_linux ${ARGS3}
+	@echo -n 3:'   '  ; ./${NAME} ${ARGS3} | ./checker_linux ${ARGS3}
 	@echo -n 4:'   '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS4} | wc -l
-#	@echo -n 4:'   '  ; ./${NAME} ${ARGS4} | ./checker_linux ${ARGS4}
+	@echo -n 4:'   '  ; ./${NAME} ${ARGS4} | ./checker_linux ${ARGS4}
 	@echo -n 6:'   '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS6} | wc -l
-#	@echo -n 6:'   '  ; ./${NAME} ${ARGS6} | ./checker_linux ${ARGS6}
+	@echo -n 6:'   '  ; ./${NAME} ${ARGS6} | ./checker_linux ${ARGS6}
 	@echo -n 7:'   '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS7} | wc -l
-#	@echo -n 7:'   '  ; ./${NAME} ${ARGS7} | ./checker_linux ${ARGS7}
+	@echo -n 7:'   '  ; ./${NAME} ${ARGS7} | ./checker_linux ${ARGS7}
 	@echo -n 8:'   '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS8} | wc -l
-#	@echo -n 8:'   '  ; ./${NAME} ${ARGS8} | ./checker_linux ${ARGS8}
+	@echo -n 8:'   '  ; ./${NAME} ${ARGS8} | ./checker_linux ${ARGS8}
 	@echo -n 12:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS12} | wc -l
-#	@echo -n 12:'  '  ; ./${NAME} ${ARGS12} | ./checker_linux ${ARGS12}
+	@echo -n 12:'  '  ; ./${NAME} ${ARGS12} | ./checker_linux ${ARGS12}
 	@echo -n 13:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS13} | wc -l
-#	@echo -n 13:'  '  ; ./${NAME} ${ARGS13} | ./checker_linux ${ARGS13}
+	@echo -n 13:'  '  ; ./${NAME} ${ARGS13} | ./checker_linux ${ARGS13}
 	@echo -n 14:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS14} | wc -l
-#	@echo -n 14:'  '  ; ./${NAME} ${ARGS14} | ./checker_linux ${ARGS14}
+	@echo -n 14:'  '  ; ./${NAME} ${ARGS14} | ./checker_linux ${ARGS14}
 	@echo -n 15:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS15} | wc -l
-#	@echo -n 15:'  '  ; ./${NAME} ${ARGS15} | ./checker_linux ${ARGS15}
+	@echo -n 15:'  '  ; ./${NAME} ${ARGS15} | ./checker_linux ${ARGS15}
 	@echo -n 16:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS16} | wc -l
-#	@echo -n 16:'  '  ; ./${NAME} ${ARGS16} | ./checker_linux ${ARGS16}
+	@echo -n 16:'  '  ; ./${NAME} ${ARGS16} | ./checker_linux ${ARGS16}
 	@echo -n 17:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS17} | wc -l
-#	@echo -n 17:'  '  ; ./${NAME} ${ARGS17} | ./checker_linux ${ARGS17}
+	@echo -n 17:'  '  ; ./${NAME} ${ARGS17} | ./checker_linux ${ARGS17}
 	@echo -n 18:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS18} | wc -l
-#	@echo -n 18:'  '  ; ./${NAME} ${ARGS18} | ./checker_linux ${ARGS18}
+	@echo -n 18:'  '  ; ./${NAME} ${ARGS18} | ./checker_linux ${ARGS18}
 	@echo -n 31:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS31} | wc -l
-#	@echo -n 31:'  '  ; ./${NAME} ${ARGS31} | ./checker_linux ${ARGS31}
+	@echo -n 31:'  '  ; ./${NAME} ${ARGS31} | ./checker_linux ${ARGS31}
 	@echo -n 32:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS32} | wc -l
-#	@echo -n 32:'  '  ; ./${NAME} ${ARGS32} | ./checker_linux ${ARGS32}
+	@echo -n 32:'  '  ; ./${NAME} ${ARGS32} | ./checker_linux ${ARGS32}
 	@echo -n 33:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS33} | wc -l
-#	@echo -n 33:'  '  ; ./${NAME} ${ARGS33} | ./checker_linux ${ARGS33}
+	@echo -n 33:'  '  ; ./${NAME} ${ARGS33} | ./checker_linux ${ARGS33}
 	@echo -n 48:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS48} | wc -l
-#	@echo -n 48:'  '  ; ./${NAME} ${ARGS48} | ./checker_linux ${ARGS48}
+	@echo -n 48:'  '  ; ./${NAME} ${ARGS48} | ./checker_linux ${ARGS48}
 	@echo -n 64:'  '  ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS64} | wc -l
-#	@echo -n 64:'  '  ; ./${NAME} ${ARGS64} | ./checker_linux ${ARGS64}
+	@echo -n 64:'  '  ; ./${NAME} ${ARGS64} | ./checker_linux ${ARGS64}
 	@ echo -n 99:'  ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS99} | wc -l
-#	@ echo -n 99:'  ' ; ./${NAME} ${ARGS99}  | ./checker_linux ${ARGS99}
+	@ echo -n 99:'  ' ; ./${NAME} ${ARGS99}  | ./checker_linux ${ARGS99}
 	@ echo -n 100:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS100} | wc -l
-#	@ echo -n 100:' ' ; ./${NAME} ${ARGS100} | ./checker_linux ${ARGS100}
+	@ echo -n 100:' ' ; ./${NAME} ${ARGS100} | ./checker_linux ${ARGS100}
 	@ echo -n 101:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS101} | wc -l
-#	@ echo -n 101:' ' ; ./${NAME} ${ARGS101} | ./checker_linux ${ARGS101}
+	@ echo -n 101:' ' ; ./${NAME} ${ARGS101} | ./checker_linux ${ARGS101}
 	@ echo -n 500:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS500} | wc -l
-#	@ echo -n 500:' ' ; ./${NAME} ${ARGS500} | ./checker_linux ${ARGS500} 
-	@ echo -n 501:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS501} | wc -l ;
-#	@ echo -n 501:' ' ; ./${NAME} ${ARGS501} | ./checker_linux ${ARGS501} 
+	@ echo -n 500:' ' ; ./${NAME} ${ARGS500} | ./checker_linux ${ARGS500} 
+	@ echo -n 501:' ' ; valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS501} | wc -l
+	@ echo -n 501:' ' ; ./${NAME} ${ARGS501} | ./checker_linux ${ARGS501} 
 
 FORCE:
 

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/03 17:12:56 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:09:10 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,12 @@ static int	push_all_from_b_to_a(t_two_stacks *ab) // void ?
 	return (i - 1);
 }
 
-// 1084 = 3 points, 6784 = 4 points
+// 1016 = 3 points, 6716 = 4 points
 void	radix_sort(t_two_stacks *ab)
 {
 	int	p;
 
+	replace_by_bigger_numbers(ab);
 	p = 0;
 	while (p < 32)
 	{
@@ -72,7 +73,6 @@ void	radix_sort(t_two_stacks *ab)
 			continue ;
 		}
 		move_those_who_has_0_at_bite_p(ab, p);
-		//printf("p = %d, %d operations\n",p,ab->len+push_all_from_b_to_a(ab));
 		push_all_from_b_to_a(ab);
 		p++;
 	}

@@ -6,9 +6,37 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:57:16 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/03 17:10:09 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:08:43 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+0:   0
+1:   0
+2:   0
+3:   5
+4:   6
+6:   20
+7:   33
+8:   0
+12:  76
+13:  82
+14:  87
+15:  92
+16:  96
+17:  137
+18:  145
+31:  235
+32:  240
+33:  315
+48:  448
+64:  576
+99:  1074
+100: 1084
+101: 1095
+500: 6784
+501: 6761
+*/
 
 #include "push_swap.h"
 
@@ -38,7 +66,6 @@ int	main(int argc, char **argv)
 	*(ab->b) = NULL;
 	if (put_args(ab, argc, argv) == -1)
 		return (error(&ab));
-	replace_by_smaller_numbers(ab);
 	radix_sort(ab);
 	free_memory(&ab);
 	return (0);

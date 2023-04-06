@@ -6,37 +6,40 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/03 14:32:04 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:10:29 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	replace_by_smaller_numbers(t_two_stacks *ab)
+void	replace_by_bigger_numbers(t_two_stacks *ab)
 {
 	unsigned int	i;
 	unsigned int	j;
-	t_stk					*min;
+	unsigned int	nb;
+	t_stk					*max;
 	t_stk					*cur;
 
 	i = 0;
+	nb = UINT_MAX;
 	while (i < ab->len)
 	{
+		max = *(ab->a);
 		j = 0;
-		min = *(ab->a);
-		while (j < ab->len && min->un < i)
+		while (j < ab->len && max->un > nb)
 		{
 			j++;
-			min = min->nxt;
+			max = max->nxt;
 		}
-		cur = min;
+		cur = max;
 		while (j++ < ab->len)
 		{
-			if (min->un > cur->un && cur->un >= i)
-				min = cur;
+			if (max->un < cur->un && cur->un <= nb)
+				max = cur;
 			cur = cur->nxt;
 		}
-		min->un = i++;
+		max->un = nb--;
+		i++;
 	}
 }
 

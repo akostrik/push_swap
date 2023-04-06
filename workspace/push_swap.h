@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/06 14:41:29 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:07:01 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 # define PUSH_SWAP_H
 
 # include <unistd.h>
-//# include <stdio.h>
-# include <sys/types.h>
+# include "libft/libft.h"
+# include <stdio.h>
+/*# include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>
 # include <limits.h>
 # include <stddef.h>
-# include "libft/libft.h"
+*/
 
 typedef struct s_stk
 {
 	int						n;
 	unsigned int			un;
-	struct t_stk			*nxt;
-	struct t_stk			*prv;
+	struct s_stk			*nxt;
+	struct s_stk			*prv;
 }	t_stk;
 
 typedef struct s_list_ops

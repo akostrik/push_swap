@@ -6,15 +6,15 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/06 14:09:10 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:33:46 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int is_sorted_by_bite_p(t_two_stacks *ab, int p)
+static int	is_sorted_by_bite_p(t_two_stacks *ab, int p)
 {
-	t_stk					*cur;
+	t_stk			*cur;
 	unsigned int	i;
 
 	cur = (*(ab->a))->nxt;
@@ -44,7 +44,7 @@ static void	move_those_who_has_0_at_bite_p(t_two_stacks *ab, int p)
 	}
 }
 
-static int	push_all_from_b_to_a(t_two_stacks *ab) // void ?
+static void	push_all_from_b_to_a(t_two_stacks *ab)
 {
 	unsigned int	i;
 	unsigned int	len_b;
@@ -53,7 +53,6 @@ static int	push_all_from_b_to_a(t_two_stacks *ab) // void ?
 	i = 0;
 	while (i++ < len_b)
 		push(ab, 'a');
-	return (i - 1);
 }
 
 // 1016 = 3 points, 6716 = 4 points

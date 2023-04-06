@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/06 14:10:29 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:34:41 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	replace_by_bigger_numbers(t_two_stacks *ab)
 {
-	unsigned int	i;
 	unsigned int	j;
 	unsigned int	nb;
-	t_stk					*max;
-	t_stk					*cur;
+	t_stk			*max;
+	t_stk			*cur;
 
-	i = 0;
 	nb = UINT_MAX;
-	while (i < ab->len)
+	while (nb > UINT_MAX - ab->len)
 	{
 		max = *(ab->a);
 		j = 0;
@@ -39,13 +37,12 @@ void	replace_by_bigger_numbers(t_two_stacks *ab)
 			cur = cur->nxt;
 		}
 		max->un = nb--;
-		i++;
 	}
 }
 
 int	what_is_at_bite_p(unsigned int un, int p)
 {
-	return ((int)((un>>p) & 00000000000000000000000000000001));
+	return ((int)((un >> p) & 00000000000000000000000000000001));
 }
 
 int	is_sorted(t_two_stacks *ab)
@@ -66,36 +63,30 @@ int	is_sorted(t_two_stacks *ab)
 
 void	free_stack_a(t_two_stacks *ab)
 {
-	t_stk					*cur;
+	t_stk			*cur;
 	unsigned int	i;
 	unsigned int	len;
 
 	len = len_(ab->a);
 	if (ab->a == NULL)
 		return ;
-	if (*(ab->a) == NULL)
+	if (*(ab->a) == NULL || len == 1)
 	{
 		free (*(ab->a));
 		return ;
 	}
-	if (len == 1)
-	{
-		free(*(ab->a));
-		return ;
-	}
 	i = 0;
 	cur = (*(ab->a))->nxt;
-	while (i < len - 2)
+	while (i++ < len - 2)
 	{
 		free(cur->prv);
 		cur = cur->nxt;
-		i++;
 	}
 	free(cur->prv);
 	free(cur);
 }
 
-void free_memory(t_two_stacks **ab)
+void	free_memory(t_two_stacks **ab)
 {
 	if (ab == NULL)
 		return ;
@@ -112,7 +103,7 @@ void free_memory(t_two_stacks **ab)
 	free(*ab);
 }
 
-
+/*
 char	*convert_to_binary(unsigned int	un) // tmp
 {
 	char *str;
@@ -155,7 +146,7 @@ void	print_ints(t_stk	**a)
 	printf("\n");
 
 }
-/*
+
 void	print_all_info(t_stk	**a)
 {
 	t_stk	*cur;

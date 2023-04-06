@@ -6,13 +6,11 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 12:48:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/03 13:35:21 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:12:20 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-
 
 int	ft_iswhitespace(char c)
 {

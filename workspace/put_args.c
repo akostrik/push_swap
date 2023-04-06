@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:02:44 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/03 17:10:16 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:31:38 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,10 @@ int	put_args(t_two_stacks *ab, int argc, char **argv)
 	int	n;
 	int	return_of_convert;
 
-	if (argc == 2)
+	if (argc == 2 && parse_string(argv[1], ab) == -1)
+		return (-1);
+	if (argc-- > 2)
 	{
-		if (parse_string(argv[1], ab) == -1)
-			return (-1);
-	}
-	else
-	{
-		argc--;
 		while (argc > 0)
 		{
 			return_of_convert = convert_beginning_str_to_int(argv[argc--], &n);

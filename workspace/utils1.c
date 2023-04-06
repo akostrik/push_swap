@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/03/31 20:13:52 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:32:13 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	rotate_a(t_two_stacks *ab)
 	ft_printf("ra\n");
 }
 
+//new->str2 = convert_to_binary(new->un);
 int	put_int(int n, t_stk **a)
 {
 	t_stk	*new;
@@ -57,9 +58,8 @@ int	put_int(int n, t_stk **a)
 		return (-1);
 	new->n = n;
 	new->un = (unsigned int)((long)n + (long)INT_MIN);
-	new->nxt = NULL;	
+	new->nxt = NULL;
 	new->prv = NULL;
-	//new->str2 = convert_to_binary(new->un);
 	put_elt(new, a);
 	return (1);
 }
@@ -85,7 +85,7 @@ int	put_elt(t_stk	*new, t_stk **a)
 unsigned int	len_(t_stk **a)
 {
 	unsigned int	i;
-	t_stk					*cur;
+	t_stk			*cur;
 
 	if (a == NULL || *a == NULL)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:46:18 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/03 17:08:32 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:13:01 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	is_conversion(const char *s)
 {
-	
 	if (!ft_strncmp(s, "%s", 2))
 		return (1);
 	else if (!ft_strncmp(s, "%c", 2))

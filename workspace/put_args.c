@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:02:44 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/06 16:01:46 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:15:01 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,6 @@ int	put_args(t_two_stacks *ab, int argc, char **argv)
 	ab->len = len_(ab->a);
 	if (double_argumets(ab) == 1)
 		return (-1);
+	replace_by_bigger_numbers(ab);
 	return (0);
 }

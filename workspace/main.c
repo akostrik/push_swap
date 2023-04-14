@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:57:16 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/06 14:45:43 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:12:32 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	main(int argc, char **argv)
 	*(ab->b) = NULL;
 	if (put_args(ab, argc, argv) == -1)
 		return (error(&ab));
-	radix_sort(ab);
+	if (ab->len <= 5)
+		sort12345(ab);
+	else
+		radix_sort(ab);
 	free_memory(&ab);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/06 14:33:46 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:40:27 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	radix_sort(t_two_stacks *ab)
 {
 	int	p;
 
-	replace_by_bigger_numbers(ab);
 	p = 0;
 	while (p < 32)
 	{

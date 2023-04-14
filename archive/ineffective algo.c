@@ -85,7 +85,8 @@ void	reverse_rotate(t_stk **a, t_two_stacks *ab, char a_or_b, int print_operatio
 	int tmp = ab->len; 	tmp++; //
 }
 
-void	push_max_from_a_to_b(t_two_stacks *ab, int print_operations)
+void	
+(t_two_stacks *ab, int print_operations)
 {
 	int		max;
 	int		i;

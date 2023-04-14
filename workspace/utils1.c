@@ -6,47 +6,11 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/06 14:32:13 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:09:15 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	push(t_two_stacks *ab, char a_or_b)
-{
-	t_stk	*moved;
-	t_stk	**from;
-	t_stk	**to;
-
-	from = ab->b;
-	to = ab->a;
-	if (a_or_b == 'b')
-	{
-		from = ab->a;
-		to = ab->b;
-	}
-	moved = *from;
-	if (moved == moved->nxt)
-	{
-		put_elt(moved, to);
-		*from = NULL;
-		ft_printf("p%c\n", a_or_b);
-		return ;
-	}
-	moved->nxt->prv = moved->prv;
-	moved->prv->nxt = moved->nxt;
-	*from = moved->nxt;
-	put_elt(moved, to);
-	ft_printf("p%c\n", a_or_b);
-}
-
-void	rotate_a(t_two_stacks *ab)
-{
-	if (ab->len <= 1)
-		return ;
-	*(ab->a) = (*(ab->a))->nxt;
-	ft_printf("ra\n");
-}
 
 //new->str2 = convert_to_binary(new->un);
 int	put_int(int n, t_stk **a)

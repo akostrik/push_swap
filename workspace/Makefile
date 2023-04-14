@@ -6,14 +6,14 @@
 #    By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:57:13 by akostrik          #+#    #+#              #
-#    Updated: 2023/04/06 15:58:58 by akostrik         ###   ########.fr        #
+#    Updated: 2023/04/14 17:09:29 by akostrik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
 
 NAME      = push_swap
-SRCS      = main.c put_args.c sort.c utils1.c utils2.c
+SRCS      = main.c put_args.c sort.c utils1.c utils2.c sort12345.c operations.c
 OBJS      = ${SRCS:.c=.o}
 HDRS      = push_swap.h
 CFLAGS    = -Wall -Wextra -Werror
@@ -59,13 +59,54 @@ ARGS_6    = "22147483648"
 ARGS_7    = 2 5 6 + 3
 ARGS_9    = 2\ 3\ 4\ 3
 ARGS_10   = "2 5 6+3"
+ARGS_11   = "4 2 3 1"
+
+ARGS4_1   = "4 2 3 1"
+ARGS4_2   = "2 3 4 1"
+ARGS4_3   = "1 4 2 3"
+ARGS4_4   = "2 4 3 1"
+ARGS5_1   = "4 2 3 1 5"
+ARGS5_2   = "4 2 5 3 1"
+ARGS5_3   = "5 2 3 4 1"
+ARGS5_4   = "3 4 5 1 2"
+ARGS5_5   = "1 5 4 2 3"
+ARGS5_6   = "2 4 5 1 3"
+ARGS5_7   = "3 5 4 2 1"
+#ARGS5_7   = "1 5 2 4 3"
 # doesn't work: ARGS_8    = "8" 6\ "7"
 
 all: ${NAME}
-	clear
+	@./${NAME} ${ARGS4_1}
+#	clear
+#	@./${NAME} ${ARGS4_1} | wc -l
+#	@./${NAME} ${ARGS4_1} | ./checker_linux ${ARGS4_1}
+#	@./${NAME} ${ARGS4_2} | wc -l
+#	@./${NAME} ${ARGS4_2} | ./checker_linux ${ARGS4_2}
+#	@./${NAME} ${ARGS4_3} | wc -l
+#	@./${NAME} ${ARGS4_3} | ./checker_linux ${ARGS4_3}
+#	@./${NAME} ${ARGS4_4} | wc -l
+#	@./${NAME} ${ARGS4_4} | ./checker_linux ${ARGS4_4}
+#	@./${NAME} ${ARGS5_1} | wc -l
+#	@./${NAME} ${ARGS5_1} | ./checker_linux ${ARGS5_1}
+#	@./${NAME} ${ARGS5_2} | wc -l
+#	@./${NAME} ${ARGS5_2} | ./checker_linux ${ARGS5_2}
+#	@./${NAME} ${ARGS5_3} | wc -l
+#	@./${NAME} ${ARGS5_3} | ./checker_linux ${ARGS5_3}
+#	@./${NAME} ${ARGS5_4} | wc -l
+#	@./${NAME} ${ARGS5_4} | ./checker_linux ${ARGS5_4}
+#	@./${NAME} ${ARGS5_5} | wc -l
+#	@./${NAME} ${ARGS5_5} | ./checker_linux ${ARGS5_5}
+#	@./${NAME} ${ARGS5_6} | wc -l
+#	@./${NAME} ${ARGS5_6} | ./checker_linux ${ARGS5_6}
+#	@./${NAME} ${ARGS5_7} | wc -l
+#	@./${NAME} ${ARGS5_7} | ./checker_linux ${ARGS5_7}
+#	@echo Empty output is expected:' '
+#	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_11}
+#	./${NAME} ${ARGS_11} | ./checker_linux ${ARGS_11}
+#	./${NAME} ${ARGS17} | ./checker_linux ${ARGS17}
 #	@echo Empty output is expected:' '
 #	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_1}
-#	@echo Empty output is expected:' '
+#	@echo Empty output is expected:' 'sss
 #	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS10}
 #	@valgrind --leak-check=full --show-leak-kinds=all --quiet ./${NAME} ${ARGS_2}
 #	@echo -n Error is expected:' '

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:57:42 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/14 16:40:27 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:17:18 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	is_sorted_by_bite_p(t_two_stacks *ab, int p)
 	i = 1;
 	while (i < ab->len)
 	{
-		if (what_is_at_bite_p(cur->prv->un, p) > what_is_at_bite_p(cur->un, p))
+		if (what_is_at_bite_p(cur->prv->u, p) > what_is_at_bite_p(cur->u, p))
 			return (0);
 		i++;
 		cur = cur->nxt;
@@ -36,7 +36,7 @@ static void	move_those_who_has_0_at_bite_p(t_two_stacks *ab, int p)
 	i = 0;
 	while (i < ab->len)
 	{
-		if (what_is_at_bite_p((*(ab->a))->un, p) == 0)
+		if (what_is_at_bite_p((*(ab->a))->u, p) == 0)
 			push(ab, 'b');
 		else
 			rotate_a(ab);

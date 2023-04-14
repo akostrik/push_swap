@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:24:00 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/14 16:41:50 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:16:10 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 typedef struct s_stk
 {
 	int						n;
-	unsigned int			un;
+	unsigned int			u;
 	struct s_stk			*nxt;
 	struct s_stk			*prv;
 }	t_stk;

@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/06 14:56:30 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:18:44 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	replace_by_bigger_numbers(t_two_stacks *ab)
 	{
 		max = *(ab->a);
 		j = 0;
-		while (j < ab->len && max->un > nb)
+		while (j < ab->len && max->u > nb)
 		{
 			j++;
 			max = max->nxt;
@@ -32,17 +32,17 @@ void	replace_by_bigger_numbers(t_two_stacks *ab)
 		cur = max;
 		while (j++ < ab->len)
 		{
-			if (max->un < cur->un && cur->un <= nb)
+			if (max->u < cur->u && cur->u <= nb)
 				max = cur;
 			cur = cur->nxt;
 		}
-		max->un = nb--;
+		max->u = nb--;
 	}
 }
 
-int	what_is_at_bite_p(unsigned int un, int p)
+int	what_is_at_bite_p(unsigned int u, int p)
 {
-	return ((int)((un >> p) & 00000000000000000000000000000001));
+	return ((int)((u >> p) & 00000000000000000000000000000001));
 }
 
 int	is_sorted(t_two_stacks *ab)

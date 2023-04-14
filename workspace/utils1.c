@@ -6,7 +6,7 @@
 /*   By: akostrik <akostrik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:47:03 by akostrik          #+#    #+#             */
-/*   Updated: 2023/04/14 16:09:15 by akostrik         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:17:31 by akostrik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	put_int(int n, t_stk **a)
 	if (new == NULL)
 		return (-1);
 	new->n = n;
-	new->un = (unsigned int)((long)n + (long)INT_MIN);
+	new->u = (unsigned int)((long)n + (long)INT_MIN);
 	new->nxt = NULL;
 	new->prv = NULL;
 	put_elt(new, a);

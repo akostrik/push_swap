@@ -1,13 +1,4 @@
 workspace/push_swap
-workspace/push_swap.a
 workspace/*.o
 workspace/libft/libft.a
 workspace/libft/*.o
-workspace/checker_linux
-submit
-submit/*
-tester
-tester/*
-
-
-
